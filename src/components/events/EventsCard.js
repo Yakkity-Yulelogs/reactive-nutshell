@@ -3,23 +3,32 @@
     Author(s): Ryan Crowley
 */
 import React, { Component } from 'react'
-import {convertDateTimeFromISO} from "../../modules/DateTime"
+import { convertDateTimeFromISO } from "../../modules/DateTime"
 
 
 class EventsCard extends Component {
     render() {
+        // need to move this to list so that it doesn't add to the list if event is before
+        
+        // const today = (new Date().getDay()) + 1
+        // const eventToday = (convertDateTimeFromISO(this.props.event.eventDate).getDay()) + 1
+        // console.log("Today: ", today)
+        // console.log("eventToday: ", eventToday)
+        // console.log("before? ", today > eventToday)
 
         return (
-            <div className={`card 
-                ${this.props.event.userId !== this.props.loggedInUser ? "friend-event" : null}`} >
-                <div className="card-content">
-                    <h3>{this.props.event.eventName}</h3>
-                    <p>
-                        {this.props.event.location}
-                        <br />{convertDateTimeFromISO(this.props.event.eventDate).toDateString()}
-                    </p>
+            <React.Fragment>
+                <div className={`card 
+                ${this.props.event.userId !== this.props.loggedInUser ? "friend-event" : "own-event"}`} >
+                    <div className="card-content">
+                        <h3>{this.props.event.eventName}</h3>
+                        <p>
+                            {this.props.event.location}
+                            <br />{convertDateTimeFromISO(this.props.event.eventDate).toDateString()}
+                        </p>
+                    </div>
                 </div>
-            </div>
+            </React.Fragment >
         )
     }
 
