@@ -39,7 +39,6 @@ class EventsList extends Component {
         for (const friend of friendsArray) {
             friendsParam += `&userId=${friend.userId}`
         }
-        console.log(friendsParam)
         return friendsParam
     }
 
