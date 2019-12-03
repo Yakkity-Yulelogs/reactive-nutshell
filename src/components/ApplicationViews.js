@@ -1,5 +1,6 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
+import FriendsList from "./friends/FriendsList";
 
 export default class ApplicationViews extends Component {
 
@@ -23,8 +24,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/friends" render={props => {
-            return null
-            // Remove null and return the component which will show list of friends
+            return <FriendsList {...props} />
           }}
         />
 
