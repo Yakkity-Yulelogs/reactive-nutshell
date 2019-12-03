@@ -1,5 +1,6 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
+import EventsList from './events/EventsList'
 
 export default class ApplicationViews extends Component {
 
@@ -44,7 +45,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/events" render={props => {
-            return null
+            return <EventsList />
             // Remove null and return the component which will show the user's events
           }}
         />

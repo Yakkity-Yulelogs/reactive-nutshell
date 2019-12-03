@@ -4,7 +4,7 @@ import EventApiManager from './EventsApiManager'
 
 class EventsList extends Component {
     state = {
-        events = []
+        events: []
     }
 
     componentDidMount () {
@@ -21,7 +21,9 @@ class EventsList extends Component {
             <React.Fragment>
                 <div className="container-cards">
                     {this.state.events.map(event => 
-                        <EventsCard />)}
+                        <EventsCard 
+                            key={event.id}
+                        />)}
 
                 </div>
             </React.Fragment>
