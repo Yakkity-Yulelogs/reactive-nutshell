@@ -11,6 +11,7 @@ class EventsList extends Component {
         events: []
     }
 
+    // returns new array where loggedInUser's first event is always the first event
     putOwnFirstEventFirst = (eventsArray) => {
         const oldArray = eventsArray
         const finalArray = []
@@ -31,7 +32,7 @@ class EventsList extends Component {
         return finalArray
     }
 
-    // create a string to allow query for each friend
+    // creates a string to allow query for each friend
     createStringOfFriends(friendsArray) {
         let friendsParam = ""
 
