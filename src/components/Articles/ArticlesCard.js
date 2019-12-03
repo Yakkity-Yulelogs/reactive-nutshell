@@ -11,8 +11,8 @@ class ArticleCard extends Component {
           <p>Synopsis: <span>{this.props.article.synopsis}</span></p>
           <p>Link: <span>{this.props.article.url}</span></p>
           <p>Time: <span>{convertDateTimeFromISO(this.props.article.timestamp).toLocaleString()}</span></p>
-          {/* <button type="button" onClick={() => this.props.deleteAnimal(this.props.animal.id)}>Discharge</button>
-          <Link to={`/animals/${this.props.animal.id}`}><button>Details</button></Link>
+          <button type="button" onClick={() => this.props.deleteArticle(this.props.article.id)}>Delete Article</button>
+          {/* <Link to={`/animals/${this.props.animal.id}`}><button>Details</button></Link>
           <button type="button"
             onClick={() =>{ this.props.history.push(`/animals/${this.props.animal.id}/edit`) }}>Edit</button> */}
         </div>
