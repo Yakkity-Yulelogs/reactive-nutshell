@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ApiFriends from './ApiFriends'
 import FriendsCard from './FriendsCard'
-
 export class FriendsList extends Component {
     state = {
         friends: [],
@@ -10,21 +9,24 @@ export class FriendsList extends Component {
     componentDidMount() {
         ApiFriends.getAllFriendsWithNames()
             .then(friends => {
-                console.log('friends', friends)
-                this.setState({
-                    friends: friends,
+                const newState = { friends: []};
+                friends.forEach(friend => {
+                    newState.friends = [...newState.friends,{deleteId: friend.id, ...friend.user}]
                 })
+                this.setState(newState)
             })
     }
 
-    removeUser = id => {
-        console.log('removing friend', id)
+    removeFriend = id => {
+        // console.log('removing friend', id)
         ApiFriends.removeFriend(id)
             .then(ApiFriends.getAllFriendsWithNames)
             .then(friends => {
-                this.setState({
-                    friends: friends,
+                const newState = { friends: []};
+                friends.forEach(friend => {
+                    newState.friends = [...newState.friends,{deleteId: friend.id, ...friend.user}]
                 })
+                this.setState(newState)
             })
     }
 
@@ -38,7 +40,7 @@ export class FriendsList extends Component {
                     return <FriendsCard 
                                 key={friend.id}
                                 friend={friend} 
-                                removeUser={this.removeUser}
+                                removeFriend={this.removeFriend}
                                 // {...this.props}        
                                 />
                 })}
