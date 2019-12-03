@@ -7,11 +7,17 @@ import React, { Component } from 'react'
 
 
 class EventCard extends Component {
-    render () {
+    render() {
         return (
-            <React.Fragment>
-
-            </React.Fragment>
+            <div className="card-container">
+                <div className="card">
+                    <h3>Name of Event</h3>
+                    <p>
+                        Location of Event
+                        <br />Date/Of/Event
+                    </p>
+                </div>
+            </div>
         )
     }
 
