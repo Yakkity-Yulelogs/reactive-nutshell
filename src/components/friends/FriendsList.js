@@ -36,6 +36,7 @@ export class FriendsList extends Component {
         return (
             <div className="container-cards">
                 <h1>User Friends</h1>
+                <button className="btn btn-primary" onClick={() => this.props.history.push("/friends/new")}>Add New Friend</button>
                 {friends.map(friend => {
                     return <FriendsCard 
                                 key={friend.id}

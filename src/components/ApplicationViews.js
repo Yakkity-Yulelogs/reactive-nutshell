@@ -5,6 +5,7 @@ import FriendsList from "./friends/FriendsList";
 import EventsList from './events/EventsList'
 import ArticlesList from "../components/Articles/ArticlesList"
 import ArticlesNewForm from "../components/Articles/ArticlesNewForm"
+import FriendsNewForm from "./friends/FriendsNewForm";
 
 export default class ApplicationViews extends Component {
 
@@ -29,8 +30,13 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/friends" render={props => {
+          exact path="/friends" render={props => {
             return <FriendsList {...props} />
+          }}
+        />
+        <Route
+          path="/friends/new" render={props => {
+            return <FriendsNewForm {...props} />
           }}
         />
 
