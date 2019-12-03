@@ -31,7 +31,7 @@ class ArticlesNewForm extends Component {
                 timestamp: createDateTimeToISO()
             }
             ApiManager.post("articles", article)
-                .then(() => this.props.history.push("/articles"))
+                .then(() => this.props.history.push("/"))
         }
     }
 
