@@ -68,7 +68,7 @@ class ArticlesNewForm extends Component {
                                 type="button"
                                 disabled={this.state.loadingStatus}
                                 onClick={this.constructNewArticle}
-                            >Submit</button>
+                            >Save Article</button>
                         </div>
                     </fieldset>
                 </form>
