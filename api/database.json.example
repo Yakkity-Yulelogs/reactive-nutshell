@@ -152,5 +152,16 @@
       "isComplete": false
     }
   ],
-  "friends": []
+  "friends": [
+    {
+      "id": 1,
+      "userId": 2,
+      "loggedInUser": 1
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "loggedInUser": 1
+    }
+  ]
 }
