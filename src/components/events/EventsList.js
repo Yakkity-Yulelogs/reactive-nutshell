@@ -67,6 +67,7 @@ class EventsList extends Component {
                         <EventsCard
                             key={event.id}
                             event={event}
+                            loggedInUser={loggedInUser}
                         />)}
 
                 </div>
