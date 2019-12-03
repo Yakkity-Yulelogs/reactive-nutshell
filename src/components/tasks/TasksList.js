@@ -9,6 +9,14 @@ class TaskList extends Component {
     tasks: []
   }
 
+  // toggling the isCompleted value based on if the checkbox is checked or not
+    handleCheckbox = (id) => {
+      // {isComplete: !this.state.tasks[id].isComplete})
+       console.log("taskId", this.state.tasks[id].id, this.state.tasks[id].isComplete)
+    //ApiManager.update("tasks", {isComplete: !this.state.tasks[id].isComplete})
+  }
+
+
 // Fetching the data from the Json file and setting it as state
 componentDidMount() {
   ApiManager.getAll("tasks", `_sort=expectedCompletionDate&_order=asc&userId=${loggedInUser}`)
@@ -30,6 +38,7 @@ render(){
         <TasksCard 
         key={task.id} 
         task={task} 
+        handleCheckbox={this.handleCheckbox}
         />
         )
     }
