@@ -18,10 +18,10 @@ export default class ApplicationViews extends Component {
             // Remove null and return the component which will show news articles
           }}
         />
-         <Route path="/articles/new" render={(props) => {
+        <Route path="/articles/new" render={(props) => {
           return <ArticlesNewForm {...props} />
         }} />
-         <Route
+        <Route
           path="/articles/:articleId(\d+)/edit" render={props => {
             return <ArticleEditForm {...props} />
           }}
@@ -55,7 +55,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/events" render={props => {
-            return <EventsList {...props}/>
+            return <EventsList {...props} />
             // Remove null and return the component which will show the user's events
           }}
         />
