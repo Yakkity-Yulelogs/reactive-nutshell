@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ArticlesCard from './ArticlesCard'
-import APIManager from '../../modules/APIManager'
+import ApiManager from '../../modules/ApiManager'
 
 class ArticlesList extends Component {
   
@@ -9,7 +9,7 @@ class ArticlesList extends Component {
   }
 
   componentDidMount() {
-    APIManager.getAll("articles")
+    ApiManager.getAll("articles")
       .then((articlesArray) => {
         this.setState({
           articles: articlesArray
@@ -18,9 +18,9 @@ class ArticlesList extends Component {
   }
 
   deleteArticle = id => {
-    APIManager.delete("articles", id)
+    ApiManager.delete("articles", id)
       .then(() => {
-        APIManager.getAll("articles")
+        ApiManager.getAll("articles")
           .then((updatedArticles) => {
             this.setState({
               articles: updatedArticles
@@ -35,14 +35,14 @@ class ArticlesList extends Component {
       <>
         <section className="section-content">
           <button type="button"
-            className="btn"
+            className="btn btn-primary"
             onClick={() => { this.props.history.push("/articles/new") }}>
-            New Articles
+            New Article
           </button>
         </section>
         <div className="container-cards">
           {this.state.articles.map(article =>
-            <ArticleCard
+            <ArticlesCard
               key={article.id}
               article={article}
               deleteArticle={this.deleteArticle}

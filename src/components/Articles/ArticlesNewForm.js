@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import APIManager from '../../modules/APIManager'
+import ApiManager from '../../modules/ApiManager'
+import { createDateTimeToISO } from '../../modules/DateTime'
 
 class ArticlesNewForm extends Component {
     state = {
@@ -22,14 +23,15 @@ class ArticlesNewForm extends Component {
         } else {
             this.setState({ loadingStatus: true })
             const article = {
+                //! change this to reference local storage
                 userId: 1,
                 title: this.state.articleTitle,
                 synopsis: this.state.synopsis,
                 url: this.state.url,
-                timestamp: 
+                timestamp: createDateTimeToISO()
             }
-            APIManager.post("animals", animal)
-                .then(() => this.props.history.push("/animals"))
+            ApiManager.post("articles", article)
+                .then(() => this.props.history.push("/articles"))
         }
     }
 
@@ -42,23 +44,30 @@ class ArticlesNewForm extends Component {
                             <input type="text"
                                 required
                                 onChange={this.handleFieldChange}
-                                id="animalName"
-                                placeholder="Robot Name"
+                                id="articleTitle"
+                                placeholder="Title Here"
                             />
-                            <label htmlFor="animalName">Name</label>
+                            <label htmlFor="articleTitle">Article Title</label>
                             <input type="text"
                                 required
                                 onChange={this.handleFieldChange}
-                                id="breed"
-                                placeholder="Model"
+                                id="synopsis"
+                                placeholder="Synopsis Here"
                             />
-                            <label htmlFor="breed">Model</label>
+                            <label htmlFor="breed">Synopsis</label>
+                            <input type="text"
+                                required
+                                onChange={this.handleFieldChange}
+                                id="url"
+                                placeholder="Link Here"
+                            />
+                            <label htmlFor="breed">Article Link</label>
                         </div>
                         <div className="alignRight">
                             <button
                                 type="button"
                                 disabled={this.state.loadingStatus}
-                                onClick={this.constructNewAnimal}
+                                onClick={this.constructNewArticle}
                             >Submit</button>
                         </div>
                     </fieldset>
