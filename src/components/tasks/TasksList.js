@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ApiManager from '../../modules/ApiManager.js'
+import TasksCard from './TasksCard'
 
 class TaskList extends Component {
   state={
@@ -27,23 +28,15 @@ render(){
     <>
     {
       this.state.tasks.map(task=>
-        <div className='card'>
-        <div className="card-content">
-        <h2 className="card-tasks">{
-        
-        task.task}</h2>
-        </div>
-        </div>
+        <TasksCard 
+        key={task.id} 
+        task={task} 
+        />
         )
     }
     </>
   ) 
 }
 }
-
-
-
-
-
 
 export default TaskList
