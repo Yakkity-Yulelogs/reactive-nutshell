@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import ApiManager from '../../modules/ApiManager.js'
 import TasksCard from './TasksCard'
 
+const loggedInUser=1
+
 class TaskList extends Component {
   state={
     tasks: []
@@ -10,7 +12,7 @@ class TaskList extends Component {
 // Fetching the data from the Json file and setting it as state
 componentDidMount() {
   console.log ("componentDidMount")
-  ApiManager.getAll("tasks", "_sort=expectedCompletionDate&_order=asc")
+  ApiManager.getAll("tasks", `_sort=expectedCompletionDate&_order=asc&userId=${loggedInUser}`)
   .then ((tasksArr)=>{
     this.setState(
       {
