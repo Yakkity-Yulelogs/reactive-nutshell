@@ -2,13 +2,20 @@ import React, { Component } from 'react'
 import EventsCard from './EventsCard'
 import EventApiManager from './EventsApiManager'
 
+// WILL NEED TO CHANGE THIS ONCE LOGIN IS FUNCTIONING
+const loggedInUser = 1
+
 class EventsList extends Component {
     state = {
-        events: []
+        events: [],
+        friendsEvents: [],
+
     }
 
+
+
     componentDidMount () {
-        EventApiManager.getAllEvents()
+        EventApiManager.getOwnEventsSorted(loggedInUser)
         .then(eventsList => {
             this.setState({
                 events: eventsList

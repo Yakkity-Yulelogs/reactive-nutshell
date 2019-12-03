@@ -6,7 +6,7 @@
 import React, { Component } from 'react'
 
 
-class EventCard extends Component {
+class EventsCard extends Component {
     render() {
         return (
             <div className="card">
@@ -23,4 +23,4 @@ class EventCard extends Component {
 
 }
 
-export default EventCard
+export default EventsCard
