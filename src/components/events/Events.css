@@ -1,3 +1,5 @@
-.events:first-child {
-    background-color: red;
+#events .card:first-child {
+    font-weight: bold;
+    font-size: 1.15em;
+    background-color: rgb(250, 245, 225);
 }

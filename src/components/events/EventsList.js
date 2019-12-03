@@ -27,7 +27,7 @@ class EventsList extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="container-cards events">
+                <div className="container-cards" id="events">
                     {this.state.events.map(event => 
                         <EventsCard 
                             key={event.id}
