@@ -35,22 +35,28 @@ class EventsList extends Component {
     createStringOfFriends(friendsArray) {
         let friendsParam = ""
 
-        for (friend of friendsArray) {
+        for (const friend of friendsArray) {
             friendsParam += `&userId=${friend.userId}`
         }
+        console.log(friendsParam)
         return friendsParam
     }
 
 
     componentDidMount() {
-        
-        EventApiManager.getAllEventsSorted()
-            .then(eventsList => {
-                this.setState({
-                    events: this.putOwnFirstEventFirst(eventsList)
-                    // events: eventsList
-                })
+        EventApiManager.getAllFriends(loggedInUser)
+            .then(friendsList => {
+                return this.createStringOfFriends(friendsList)
             })
+            .then(friendString => {
+                EventApiManager.getUserAndFriendEventsSorted(loggedInUser, friendString)
+                    .then(eventsList => {
+                        this.setState({
+                            events: this.putOwnFirstEventFirst(eventsList)
+                        })
+                    })
+            }
+            )
     }
 
     render() {

@@ -5,9 +5,13 @@ export default {
         return ApiManager.getAll("events", `userId=${userId}&_sort=eventDate&_order=asc`)
     },
 
-    getAllEventsSorted() {
-        return ApiManager.getAll("events", `_sort=eventDate&_order=asc`)
+    getUserAndFriendEventsSorted(userId, friendString) {
+        return ApiManager.getAll("events", `userId=${userId}${friendString}&_sort=eventDate&_order=asc`)
     },
+
+    getAllFriends(user) {
+        return ApiManager.getAll("friends", `loggedInUser=${user}`)
+    }
 
 
 }
