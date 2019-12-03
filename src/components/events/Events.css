@@ -1,5 +1,10 @@
 #events .card:first-child {
     font-weight: bold;
     font-size: 1.15em;
-    background-color: rgb(250, 245, 225);
+    background-color: rgba(216, 215, 215, 0.673);
+}
+
+.friend-event {
+    font-style: italic;
+    background-color: cornsilk;
 }
