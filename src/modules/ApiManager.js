@@ -2,6 +2,8 @@ const baseUrl = 'http://localhost:5002';
 
 export default {
 	get(endpoint, id, params="") {
+        // pass extra optional 'params' to be included after the '?' in the fetch call
+        // ex. "_embed=user" or "sort=timestamp"
 		return fetch(`${baseUrl}/${endpoint}/${id}?${params}`).then((result) => result.json());
 	},
 	getAll(endpoint, params="") {
