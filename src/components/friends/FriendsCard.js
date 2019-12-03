@@ -2,14 +2,18 @@ import React, { Component } from 'react'
 
 export class FriendsCard extends Component {
     render() {
-        const { friend } = this.props
-        const { removeFriend } = this.props
+        const { friend, isFriend } = this.props
+        const { removeFriend, addFriend } = this.props
         // console.log('FriendsCard', friend)
         return (
             <div className="card">
                 <div className="card-content">
-                    <h3>{friend.fullName}</h3>
-                    <button className="btn btn-danger" onClick={() => removeFriend(friend.deleteId)}>Remove</button>
+                    <p>{friend.fullName}</p>
+                    {isFriend ? 
+                        <button className="btn btn-danger" onClick={() => removeFriend(friend.deleteId)}>Remove</button> :
+                        <button className="btn btn-success" onClick={() => addFriend(friend.id)}>Add Friend</button>
+                    }
+
                 </div>
             </div>
         )

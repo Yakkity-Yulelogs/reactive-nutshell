@@ -40,7 +40,8 @@ export class FriendsList extends Component {
                 {friends.map(friend => {
                     return <FriendsCard 
                                 key={friend.id}
-                                friend={friend} 
+                                friend={friend}
+                                isFriend={true}
                                 removeFriend={this.removeFriend}
                                 // {...this.props}        
                                 />
