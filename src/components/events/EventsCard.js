@@ -9,8 +9,8 @@ import React, { Component } from 'react'
 class EventCard extends Component {
     render() {
         return (
-            <div className="card-container">
-                <div className="card">
+            <div className="card">
+                <div className="card-content">
                     <h3>Name of Event</h3>
                     <p>
                         Location of Event
