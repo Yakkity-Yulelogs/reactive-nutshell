@@ -13,7 +13,16 @@ class TaskList extends Component {
     handleCheckbox = (id) => {
       // {isComplete: !this.state.tasks[id].isComplete})
        console.log("taskId", this.state.tasks[id].id, this.state.tasks[id].isComplete)
-    //ApiManager.update("tasks", {isComplete: !this.state.tasks[id].isComplete})
+       const editedObj = {
+        id: this.state.tasks[id].id,
+        userId: this.state.tasks[id].userId,
+        task: this.state.tasks[id].task,
+        // expectedCompletionDate: this.state.task[id].expectedCompletionDate,
+        isComplete: !this.state.tasks[id].isComplete
+       }
+       console.log (editedObj)
+      ApiManager.update("tasks", editedObj)
+
   }
 
 
