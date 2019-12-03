@@ -9,7 +9,7 @@ class ArticlesList extends Component {
   }
 
   componentDidMount() {
-    ApiManager.getAll("articles")
+    ApiManager.getAll("articles", "userId=1")
       .then((articlesArray) => {
         this.setState({
           articles: articlesArray
