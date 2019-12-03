@@ -2,19 +2,20 @@
     Purpose: Display the information for a single event.
     Author(s): Ryan Crowley
 */
-
 import React, { Component } from 'react'
+import {convertDateTimeFromISO} from "../../modules/DateTime"
 
 
 class EventsCard extends Component {
     render() {
+
         return (
             <div className="card">
                 <div className="card-content">
-                    <h3>Name of Event</h3>
+                    <h3>{this.props.event.eventName}</h3>
                     <p>
-                        Location of Event
-                        <br />Date/Of/Event
+                        {this.props.event.location}
+                        <br />{convertDateTimeFromISO(this.props.event.eventDate).toDateString()}
                     </p>
                 </div>
             </div>

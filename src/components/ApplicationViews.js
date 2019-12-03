@@ -49,7 +49,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/events" render={props => {
-            return <EventsList />
+            return <EventsList {...props}/>
             // Remove null and return the component which will show the user's events
           }}
         />

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import EventsCard from './EventsCard'
 import EventApiManager from './EventsApiManager'
+import './Events.css'
 
 // WILL NEED TO CHANGE THIS ONCE LOGIN IS FUNCTIONING
 const loggedInUser = 1
@@ -26,10 +27,11 @@ class EventsList extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="container-cards">
+                <div className="container-cards events">
                     {this.state.events.map(event => 
                         <EventsCard 
                             key={event.id}
+                            event={event}
                         />)}
 
                 </div>
