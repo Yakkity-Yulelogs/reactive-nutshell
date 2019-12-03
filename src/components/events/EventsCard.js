@@ -10,7 +10,8 @@ class EventsCard extends Component {
     render() {
 
         return (
-            <div className="card">
+            <div className={`card 
+                ${this.props.event.userId !== this.props.loggedInUser ? "friend-event" : null}`} >
                 <div className="card-content">
                     <h3>{this.props.event.eventName}</h3>
                     <p>
