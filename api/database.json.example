@@ -1,8 +1,149 @@
 {
-  "users": [],
-  "articles": [],
-  "messages": [],
-  "events": [],
-  "tasks": [],
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Ryan Crowley",
+      "email": "ryan@ryan.com",
+      "password": "asdf"
+    },
+    {
+      "id": 2,
+      "fullName": "Guy Cherkesky",
+      "email": "guy@guy.com",
+      "password": "asdf"
+    },
+    {
+      "id": 3,
+      "fullName": "Ryan Bishop",
+      "email": "ryanB@ryanb.com",
+      "password": "asdf"
+    },
+    {
+      "id": 4,
+      "fullName": "Trey Suiter",
+      "email": "trey@trey.com",
+      "password": "asdf"
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "userId": 4,
+      "url": "http://www.google.com",
+      "title": "Trey's Article",
+      "synopsis": "This is a search engine, it's a really long read.",
+      "timestamp": 1585322812
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "url": "http://www.facebook.com",
+      "title": "Bishop's Article",
+      "synopsis": "This is a social media site, not an article at all!",
+      "timestamp": 1585322813
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "url": "http://www.instagram.com",
+      "title": "Guy's Article",
+      "synopsis": "This is a social media site, not an article at all!",
+      "timestamp": 1585322814
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "url": "http://www.starwars.com",
+      "title": "Crowley's Article",
+      "synopsis": "Site for nerds, not so much a news article",
+      "timestamp": 1585322815
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "userId": 4,
+      "message": "Sup y'all.",
+      "timestamp": 1585322812
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "message": "Not much.",
+      "timestamp": 1585322813
+    },
+    {
+      "id": 3,
+      "userId": 4,
+      "message": "Did you guys see the Mandalorian?",
+      "timestamp": 1585322814
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "message": "HEY JUST GOt here whoops caps lock",
+      "timestamp": 1585322815
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "userId": 4,
+      "eventName": "Party",
+      "eventDate": 1585322812,
+      "location": "Hackery"
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "eventName": "Another Party",
+      "eventDate": 1585322813,
+      "location": "Snackery"
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "eventName": "Meetup",
+      "eventDate": 1585322814,
+      "location": "Nashville"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "eventName": "Lunch",
+      "eventDate": 1585322815,
+      "location": "Sonic Drivethru"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "userId": 4,
+      "task": "Write Code",
+      "expectedCompletionDate": 1585322815,
+      "isComplete": false
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "task": "Read Books",
+      "expectedCompletionDate": 1585322816,
+      "isComplete": false
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "task": "Eat",
+      "expectedCompletionDate": 1585322817,
+      "isComplete": false
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "task": "Sleep",
+      "expectedCompletionDate": 1585322818,
+      "isComplete": false
+    }
+  ],
   "friends": []
 }
