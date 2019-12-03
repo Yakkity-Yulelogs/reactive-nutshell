@@ -11,7 +11,6 @@ class TaskList extends Component {
 
 // Fetching the data from the Json file and setting it as state
 componentDidMount() {
-  console.log ("componentDidMount")
   ApiManager.getAll("tasks", `_sort=expectedCompletionDate&_order=asc&userId=${loggedInUser}`)
   .then ((tasksArr)=>{
     this.setState(
@@ -24,8 +23,6 @@ componentDidMount() {
 
 // Rendering the data from state
 render(){
-  console.log ("RENDER")
-  console.log ("state:", this.state)
   return(
     <>
     {
