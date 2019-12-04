@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ApiManager from '../../modules/ApiManager.js'
 import TasksCard from './TasksCard'
 
-const loggedInUser = 1
+const loggedInUser = 1 // REPLACE WITH LOCALSTORAGE
 
 class TaskList extends Component {
   state = {
