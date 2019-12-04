@@ -9,6 +9,12 @@ const ApiFriends = {
     },
     removeFriend(id) {
         return ApiManager.delete("friends", id)
+    },
+    searchUsersByKeyWord(searchTerm){
+        return ApiManager.getAll("users", `fullName_like=${searchTerm}`)
+    },
+    followNewFriend(connectionObj){
+        return ApiManager.post("friends", connectionObj)
     }
 }
 
