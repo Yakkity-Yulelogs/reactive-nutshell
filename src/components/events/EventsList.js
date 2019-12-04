@@ -53,8 +53,7 @@ class EventsList extends Component {
                     foundFirstEvent = true
                     
                 } else {
-                    // if own event or friends evt
-                    if (evt.userId)
+                    // add evt to the end of the list
                     finalArray.push(evt)
                 }
             }

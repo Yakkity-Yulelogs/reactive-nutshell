@@ -7,6 +7,7 @@ import ArticlesList from "../components/Articles/ArticlesList"
 import ArticlesNewForm from "../components/Articles/ArticlesNewForm"
 import FriendsNewForm from "./friends/FriendsNewForm";
 import ArticleEditForm from "../components/Articles/ArticlesEditForm"
+import EventsNewForm from "./events/EventsNewForm"
 
 export default class ApplicationViews extends Component {
 
@@ -60,10 +61,14 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/events" render={props => {
+          exact path="/events" render={props => {
             return <EventsList {...props} />
             // Remove null and return the component which will show the user's events
           }}
+        />
+        <Route path="/events/new" render ={(props) =>{
+          return <EventsNewForm {...props} />
+        }}
         />
 
       </React.Fragment>
