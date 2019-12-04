@@ -1,13 +1,17 @@
+//Author: Trey Suiter
+
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { convertDateTimeFromISO } from '../../modules/DateTime'
 
 class ArticleCard extends Component {
+
     render() {
         return (
-            <div className="card">
+            <div className={`card ${this.props.article.userId !== this.props.loggedInUser ? "friend-article" : null}`}>
                 <div className="card-content">
                     <h2>Title: <span className="card-articleName">{this.props.article.title}</span></h2>
+                    <p>{`${this.props.friendNameObject.fullName}`}</p>
                     <p>Synopsis: <span>{this.props.article.synopsis}</span></p>
                     <p>Link: <span>{this.props.article.url}</span></p>
                     <p>Time: <span>{convertDateTimeFromISO(this.props.article.timestamp).toLocaleString()}</span></p>
