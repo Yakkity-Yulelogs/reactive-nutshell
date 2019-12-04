@@ -63,7 +63,7 @@ class ArticleEditForm extends Component {
                                 id="articleTitle"
                                 value={this.state.articleTitle}
                             />
-                            <label htmlFor="animalName">Article Title</label>
+                            <label htmlFor="animalName">Title</label>
                             <input
                                 type="text"
                                 required
@@ -88,7 +88,12 @@ class ArticleEditForm extends Component {
                                 type="button" disabled={this.state.loadingStatus}
                                 onClick={this.updateExistingArticle}
                                 className="btn btn-primary"
-                            >Submit</button>
+                            >Save Edit</button>
+                            <button 
+                            type="button" 
+                            className="btn btn-danger" 
+                            onClick={() => this.props.history.push("/")}
+                            >Cancel</button>
                         </div>
                     </fieldset>
                 </form>

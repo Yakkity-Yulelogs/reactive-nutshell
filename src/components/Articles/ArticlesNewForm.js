@@ -49,7 +49,7 @@ class ArticlesNewForm extends Component {
                                 id="articleTitle"
                                 placeholder="Title Here"
                             />
-                            <label htmlFor="articleTitle">Article Title</label>
+                            <label htmlFor="articleTitle">Title</label>
                             <input type="text"
                                 required
                                 onChange={this.handleFieldChange}
@@ -63,7 +63,7 @@ class ArticlesNewForm extends Component {
                                 id="url"
                                 placeholder="Link Here"
                             />
-                            <label htmlFor="breed">Article Link</label>
+                            <label htmlFor="breed">Link</label>
                         </div>
                         <div className="alignRight">
                             <button
