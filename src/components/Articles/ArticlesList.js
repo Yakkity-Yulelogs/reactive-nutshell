@@ -50,7 +50,7 @@ class ArticlesList extends Component {
                     ArticlesApiManager.getUserAndFriendsArticlesSorted(loggedInUser, friendString)
                         .then(articlesList => {
                             this.setState({
-                                articles: this.putOwnFirstArticleFirst(articlesList)
+                                articles: articlesList
                             })
                         })
                 })
