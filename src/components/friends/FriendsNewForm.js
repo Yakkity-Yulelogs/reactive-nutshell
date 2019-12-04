@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import FriendsCard from './FriendsCard';
 import ApiFriends from './ApiFriends';
-import ApiManager from '../../modules/ApiManager';
 
 // TODO: change to localStorage when implemented
 const loggedInUserId = 1
 export class FriendsNewForm extends Component {
 	state = {
-        friends: [],
+        // friends: [],
         friendIds: [],
         nonFriends: [],
         searchTerm: "",
-        loadingStatus: false,
 	};
 
 	componentDidMount() {
 		ApiFriends.getAllFriendsWithNames().then((friends) => {
-			const newState = { friends: [], friendIds: [] };
+            const newState = { 
+                // friends: [], 
+                friendIds: [] 
+            };
 			friends.forEach((friend) => {
-                newState.friends = [ ...newState.friends, { ...friend.user } ];
+                // newState.friends = [ ...newState.friends, { ...friend.user } ];
                 newState.friendIds = [...newState.friendIds, friend.userId];
 			});
             this.setState(newState);
@@ -26,22 +27,23 @@ export class FriendsNewForm extends Component {
     }
     
     handleChange = e => {
-        const stateToChange = {}
-        stateToChange[e.target.id] = e.target.value
-        this.setState(stateToChange)
+        this.setState({
+            [e.target.id]: e.target.value
+        })
     }
 
-    searchNonFriends = e => {
+    searchUserNames = e => {
+        // only search using input value after user hits 'Enter' key
         if (e.key === "Enter"){
             const { searchTerm, friendIds } = this.state
-            ApiManager.getAll("users", `fullName_like=${searchTerm}`)
+            ApiFriends.searchUsersByKeyWord(searchTerm)
             .then(results => {
-                const filtered = results.filter(result => {
+                // only return non-friend userIds that also aren't current user
+                const nonFriends = results.filter(result => {
                     return (result.id !== loggedInUserId && !friendIds.includes(result.id))
                 })
-                console.log('filtered results', filtered)
                 this.setState({
-                    nonFriends: filtered
+                    nonFriends: nonFriends
                 })
             })
         }
@@ -52,31 +54,33 @@ export class FriendsNewForm extends Component {
             loggedInUser: loggedInUserId,
             userId: id
         }
-        ApiManager.post("friends", newFriend)
+        ApiFriends.follow(newFriend)
         .then(()=>this.props.history.push("/friends"))
     }
 
 	render() {
-		const { nonFriends, friends } = this.state;
+		const { nonFriends } = this.state;
 
 		return (
-			<div>
+			<div className="container-cards">
 				<h1>Add New Friend</h1>
-                <input id="searchTerm" placeholder="Search" onChange={this.handleChange} onKeyPress={this.searchNonFriends} />
+                <input id="searchTerm" 
+                    placeholder="Search Users"
+                    onChange={this.handleChange}
+                    onKeyPress={this.searchUserNames} 
+                />
                 <h3>Search Results</h3>
-                {nonFriends.length ? 
-                    nonFriends.map((friend) => {
+                <button className="btn btn-info" onClick={() => this.props.history.push("/friends")}>Go To Friends</button>
+                {nonFriends.map((user) => {
                         return (
                             <FriendsCard
-                                key={friend.id}
-                                friend={friend}
+                                key={user.id}
+                                user={user}
                                 isFriend={false}
                                 addFriend={this.addFriend}
-                                {...this.props}
                             />
                         );
-                    }) :
-                    <h4>No results. Try another search term</h4>
+                    })
                 }
 			</div>
 		);
