@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+//Author: Trey Suiter
+
 import ApiManager from '../../modules/ApiManager'
 import { createDateTimeToISO } from '../../modules/DateTime'
 
