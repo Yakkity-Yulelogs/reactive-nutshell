@@ -5,11 +5,23 @@
 
 import React, { Component } from 'react'
 import { convertDateTimeFromISO } from '../../modules/DateTime'
+import ApiFriends from '../friends/ApiFriends'
 
+const { followNewFriend } = ApiFriends
 //TODO: replace with localStorage authentication later
 const loggedInUser = 1
 
 export class MessagesCard extends Component {
+    handleClick = e => {
+        const userName = e.target.innerText
+        if (window.confirm(`Add ${userName} to your Friends list?`)){
+            const connection = {
+                loggedInUser: loggedInUser,
+                userId: Number(e.target.name)
+            };
+            followNewFriend(connection).then(() => this.props.history.push('/friends'));
+        }
+    }
     render() {
         const { timestamp, message, userId } = this.props.message
         const { user: { fullName }} = this.props.message
@@ -25,7 +37,11 @@ export class MessagesCard extends Component {
         return (
             <div className={`${messageClasses} card`}>
                 <div className="card-body">
-                    <span><b>{fullName}</b></span>
+                    {this.props.isFriendOrSelf ?
+                        <span><b>{fullName}</b></span> :
+                        <button data-toggle="tooltip" title="Add Friend" data-placement="top" name={userId} className="btn btn-info btn-sm"
+                                onClick={this.handleClick}>{fullName}</button>
+                    }
                     <span className="small"> {displayDateTime} </span>
                     {messageClasses === "currentUser" && 
                         <>
