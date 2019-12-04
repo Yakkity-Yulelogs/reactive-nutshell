@@ -10,10 +10,19 @@ export class TasksCard extends Component {
           <div className="card-content">
             <h2 className="card-task">{this.props.task.task}</h2>
             <p>{convertDateTimeFromISO(this.props.task.expectedCompletionDate).toDateString()}</p>
-            <input type="checkbox" checked={this.props.task.isComplete} onChange={()=>
+           
+            <div>
+            <input type="checkbox" checked={this.props.task.isComplete} onChange={()=> // handle checkbox
             this.props.handleCheckbox(this.props.task.id)
             }></input>
             <label>Mark as completed</label>
+            </div>
+
+            <div>
+            <button type="button" className="btn btn-danger"  onClick={()=>{
+              this.props.handleDelete(this.props.task.id) // handle delete
+            }}>Delete</button>
+            </div>
             
           </div>
       </div>
