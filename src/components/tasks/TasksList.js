@@ -9,6 +9,23 @@ class TaskList extends Component {
     tasks: []
   }
 
+//******************************************************************************
+//Re-renderer
+//******************************************************************************
+tasksRerenderer = () => {
+  ApiManager.getAll("tasks", `_sort=expectedCompletionDate&_order=asc&userId=${loggedInUser}`)
+      .then((tasksArr) => {
+        this.setState(
+          {
+            tasks: tasksArr
+          }
+        )
+      })
+}
+
+//******************************************************************************
+//Handle Checkbox On/Off
+//******************************************************************************
   // toggling the isCompleted value based on if the checkbox is checked or not
   handleCheckbox = (id) => {
     // filtering the state array to get the relevant obj for edit
@@ -25,19 +42,19 @@ class TaskList extends Component {
     }
     // PUT call
     ApiManager.update("tasks", editedObj)
-      //rerouting
-      .then(() => {
-        ApiManager.getAll("tasks", `_sort=expectedCompletionDate&_order=asc&userId=${loggedInUser}`)
-        .then((tasksArr) => {
-          this.setState(
-            {
-              tasks: tasksArr
-            }
-          )
-        })})
+      //re-rendering
+      .then(() => this.tasksRerenderer())
   }
-
-
+//******************************************************************************
+// Handle Delete
+//******************************************************************************
+  handleDelete = (id) => {
+    ApiManager.delete("tasks", id)
+    .then (()=> this.tasksRerenderer())
+  }
+//******************************************************************************
+// componentDidMount()
+//******************************************************************************
   // Fetching the data from the Json file and setting it as state
   componentDidMount() {
     ApiManager.getAll("tasks", `_sort=expectedCompletionDate&_order=asc&userId=${loggedInUser}`)
@@ -49,7 +66,9 @@ class TaskList extends Component {
         )
       })
   }
-
+//******************************************************************************
+// render()
+//******************************************************************************
   // Rendering the data from state
   render() {
     return (
@@ -60,6 +79,7 @@ class TaskList extends Component {
               key={task.id}
               task={task}
               handleCheckbox={this.handleCheckbox}
+              handleDelete = {this.handleDelete}
             />
           )
         }

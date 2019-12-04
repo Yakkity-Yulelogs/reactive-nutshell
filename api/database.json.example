@@ -120,35 +120,45 @@
       "eventName": "Get new DL",
       "eventDate": "2019-12-07T17:09:51.663Z",
       "location": "DMV"
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "eventName": "Get new DL",
+      "eventDate": "2019-12-07T17:09:51.663Z",
+      "location": "DMV"
     }
   ],
   "tasks": [
     {
       "id": 1,
-      "userId": 4,
+      "userId": 1,
       "task": "Write Code",
-      "expectedCompletionDate": "2019-12-03T17:09:51.663Z",
       "isComplete": false
     },
     {
       "id": 2,
-      "userId": 3,
+      "userId": 1,
       "task": "Read Books",
-      "expectedCompletionDate": "2019-12-05T17:09:51.663Z",
+      "expectedCompletionDate": "2019-12-02T17:09:51.663Z",
       "isComplete": false
     },
     {
       "id": 3,
-      "userId": 2,
+      "userId": 1,
       "task": "Eat",
-      "expectedCompletionDate": "2019-12-06T17:09:51.663Z",
       "isComplete": false
     },
     {
       "id": 4,
       "userId": 1,
       "task": "Sleep",
-      "expectedCompletionDate": "2019-12-07T17:09:51.663Z",
+      "isComplete": false
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "task": "Sleep Well",
       "isComplete": false
     }
   ],
