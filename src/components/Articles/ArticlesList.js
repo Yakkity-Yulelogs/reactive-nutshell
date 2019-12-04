@@ -15,32 +15,12 @@ class ArticlesList extends Component {
         articles: [],
     }
 
-    // putOwnFirstArticleFirst = (articlesArray) => {
-    //     const originalArray = articlesArray
-    //     const finalArray = []
-    //     let foundFirstArticle = false
-
-    //     for (const evt of originalArray) {
-
-    //         if (!foundFirstArticle && evt.userId === loggedInUser) {
-    //             finalArray.unshift(evt)
-    //             foundFirstArticle = true
-
-    //         } else {
-
-    //             finalArray.push(evt)
-    //         }
-    //     }
-    //     return finalArray
-    // }
-
     createStringOfFriends(friendsArray) {
         let friendsParam = ""
 
         for (const friend of friendsArray) {
             friendsParam += `&userId=${friend.userId}`
         }
-        console.log('is this freindsParam', friendsParam)
         return friendsParam
     }
 
@@ -48,7 +28,6 @@ class ArticlesList extends Component {
 
         ArticlesApiManager.getAllFriends(loggedInUser)
             .then(friendsList => {
-                console.log("is this a friends list?", friendsList)
                 return this.createStringOfFriends(friendsList)
             })
             .then(friendString => {
@@ -92,7 +71,6 @@ class ArticlesList extends Component {
                 <div className="container-cards">
                     {this.state.articles.map(article =>
                         <ArticlesCard
-                            friendNameObject={() => ArticlesApiManager.getFriendName(article.userId)}
                             key={article.id}
                             loggedInUser={loggedInUser}
                             article={article}
