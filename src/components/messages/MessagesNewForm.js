@@ -45,7 +45,7 @@ export class MessagesNewForm extends Component {
                                 />
                         <button type="submit"
                                 className="btn btn-success"
-                        >Post</button>
+                        >Post </button>
                     </form>
                 </div>
             </div>
