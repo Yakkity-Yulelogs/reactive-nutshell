@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ApiManager from '../../modules/ApiManager.js'
 import TasksCard from './TasksCard'
+import TasksNewForm from './TasksNewForm'
 
 const loggedInUser = 1
 
@@ -22,6 +23,7 @@ tasksRerenderer = () => {
         )
       })
 }
+
 
 //******************************************************************************
 //Handle Checkbox On/Off
@@ -73,6 +75,12 @@ tasksRerenderer = () => {
   render() {
     return (
       <>
+      <h1>Tasks</h1>
+
+      <button type="button" className="btn btn-primary"  onClick={()=>{
+              return <TasksNewForm /> // handle delete
+            }}>Add New</button>
+
         {
           this.state.tasks.map(task =>
             <TasksCard
