@@ -1,7 +1,6 @@
 //Author: Trey Suiter
 
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 import { convertDateTimeFromISO } from '../../modules/DateTime'
 
 class ArticleCard extends Component {
@@ -12,7 +11,7 @@ class ArticleCard extends Component {
                 <div className="card-content">
                     <h2>Title: <span className="card-articleName">{this.props.article.title}</span></h2>
                     <p>Synopsis: <span>{this.props.article.synopsis}</span></p>
-                    <p>Link: <a href={this.props.article.url} target="_blank">{this.props.article.url}</a></p>
+                    <p>Link: <a href={this.props.article.url} target="_blank" rel="noopener noreferrer">{this.props.article.url}</a></p>
                     <p>Time: <span>{convertDateTimeFromISO(this.props.article.timestamp).toLocaleString()}</span></p>
                     <button type="button" onClick={() => this.props.deleteArticle(this.props.article.id)}>Delete Article</button>
                     <button type="button"
