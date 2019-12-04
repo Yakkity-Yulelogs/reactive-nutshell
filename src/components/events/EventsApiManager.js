@@ -6,6 +6,10 @@
 import ApiManager from '../../modules/ApiManager'
 
 export default {
+    getSingleEvent(id) {
+        return ApiManager.get("events", id)
+    },
+
     getUserAndFriendEventsSorted(userId, friendString) {
         return ApiManager.getAll("events", `userId=${userId}${friendString}&_sort=eventDate&_order=asc`)
     },
@@ -20,5 +24,9 @@ export default {
 
     deleteEvent(id) {
         return ApiManager.delete("events", id)
+    },
+
+    editEvent(editedEvent) {
+        return ApiManager.update("events", editedEvent)
     }
 }
