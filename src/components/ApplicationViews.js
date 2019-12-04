@@ -8,6 +8,8 @@ import ArticlesNewForm from "../components/Articles/ArticlesNewForm"
 import FriendsNewForm from "./friends/FriendsNewForm";
 import ArticleEditForm from "../components/Articles/ArticlesEditForm"
 import TasksNewForm from "./tasks/TasksNewForm";
+import MessagesList from "./messages/MessagesList";
+import MessagesEditForm from "./messages/MessagesEditForm";
 
 export default class ApplicationViews extends Component {
 
@@ -48,9 +50,13 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/messages" render={props => {
-            return null
-            // Remove null and return the component which will show the messages
+          exact path="/messages" render={props => {
+            return <MessagesList {...props} />
+          }}
+        />
+        <Route
+          path="/messages/:messageId(\d+)/edit" render={props => {
+            return <MessagesEditForm {...props} />
           }}
         />
 
