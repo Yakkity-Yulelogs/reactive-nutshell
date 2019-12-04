@@ -40,11 +40,12 @@ export class MessagesNewForm extends Component {
                         <input name="messageText"
                                 style={blockStyle}
                                 onChange={this.handleChange}
+                                placeholder="Enter message"
                                 required
                                 />
                         <button type="submit"
                                 className="btn btn-success"
-                        >Post Message</button>
+                        >Post</button>
                     </form>
                 </div>
             </div>
