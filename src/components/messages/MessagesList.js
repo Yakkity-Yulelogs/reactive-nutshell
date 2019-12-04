@@ -25,13 +25,15 @@ export class MessagesList extends Component {
 
 	editMessage = id => {
 		console.log('editing message', id)
+		this.props.history.push(`/messages/${id}/edit`)
 	}
 
 	deleteMessage = id => {
-		console.log('deleting message', id)
-		deleteUserMessage(id)
-		.then(getAllMessages)
-		.then(this.updateStateMessages)
+		if (window.confirm("Delete this message?")){
+			deleteUserMessage(id)
+			.then(getAllMessages)
+			.then(this.updateStateMessages)
+		}
 	}
 
 	render() {

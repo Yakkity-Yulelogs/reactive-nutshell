@@ -6,6 +6,12 @@ const ApiMessages = {
     },
     deleteUserMessage(id){
         return ApiManager.delete("messages", id)
+    },
+    getSingleMessage(id){
+        return ApiManager.get("messages", id)
+    },
+    saveEditedMessage(editedMessageObj){
+        return ApiManager.update("messages", editedMessageObj)
     }
 }
 
