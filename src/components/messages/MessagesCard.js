@@ -10,6 +10,10 @@ import { convertDateTimeFromISO } from '../../modules/DateTime'
 const loggedInUser = 1
 
 export class MessagesCard extends Component {
+    handleClick = e => {
+        console.log('e.target', e.target)
+        console.log("userName clicked")
+    }
     render() {
         const { timestamp, message, userId } = this.props.message
         const { user: { fullName }} = this.props.message
@@ -21,11 +25,15 @@ export class MessagesCard extends Component {
             messageClasses = "currentUser"
         }
         const displayDateTime = convertDateTimeFromISO(timestamp).toLocaleString()
-
+        console.log('props', this.props.isFriendOrSelf)
         return (
             <div className={`${messageClasses} card`}>
                 <div className="card-body">
-                    <span><b>{fullName}</b></span>
+                    {this.props.isFriendOrSelf ?
+                        <span><b>{fullName}</b></span> :
+                        <button className="btn btn-info stn-sm"
+                                onClick={this.handleClick}>{fullName}</button>
+                    }
                     <span className="small"> {displayDateTime} </span>
                     {messageClasses === "currentUser" && 
                         <>

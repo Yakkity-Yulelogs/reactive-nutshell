@@ -6,11 +6,16 @@
 import React, { Component } from 'react';
 import ApiMessages from './ApiMessages';
 import MessagesCard from './MessagesCard';
+import ApiFriends from '../friends/ApiFriends'
 
 const { getAllMessages, deleteUserMessage } = ApiMessages
+const { getAllFriendsWithNames } = ApiFriends
+//TODO: replace with localStorage authentication
+const loggedInUserId = 1
 export class MessagesList extends Component {
 	state = {
-		messages: []
+		messages: [],
+		friendIds: [],
 	};
 
 	updateStateMessages = (array) => {
@@ -21,8 +26,20 @@ export class MessagesList extends Component {
 
 	componentDidMount() {
 		getAllMessages().then(this.updateStateMessages);
+		getAllFriendsWithNames().then((friends) => {
+			// setState should only be run once, so this is setting up a temporary obj to store the data from the forEach
+			const newState = {
+				messages: this.state.messages,
+				friendIds: []
+			};
+			friends.forEach((friend) => {
+				// newState.friends = [ ...newState.friends, { ...friend.user } ];
+				newState.friendIds = [ ...newState.friendIds, friend.userId ];
+			});
+			this.setState(newState);
+		});
 	}
-
+	
 	editMessage = id => {
 		this.props.history.push(`/messages/${id}/edit`)
 	}
@@ -37,6 +54,7 @@ export class MessagesList extends Component {
 
 	render() {
 		const { messages } = this.state;
+	
 		return (
 			<>
 			    <div className="container-cards">
@@ -48,9 +66,13 @@ export class MessagesList extends Component {
 							New Message
 					</button>
     				{messages.map((message) => {
+						// check for friendStatus to display button logic to add new friends
+						const isFriendOrSelf = this.state.friendIds.includes(message.userId) ||
+												message.userId === loggedInUserId
 						return <MessagesCard
 									key={message.id} 
 									message={message}
+									isFriendOrSelf={isFriendOrSelf}
 									editMessage={this.editMessage}
 									deleteMessage={this.deleteMessage}
 								/>;
