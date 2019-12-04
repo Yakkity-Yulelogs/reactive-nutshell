@@ -13,8 +13,8 @@ const ApiFriends = {
     searchUsersByKeyWord(searchTerm){
         return ApiManager.getAll("users", `fullName_like=${searchTerm}`)
     },
-    follow(newConnection){
-        return ApiManager.post("friends", newConnection)
+    followNewFriend(connectionObj){
+        return ApiManager.post("friends", connectionObj)
     }
 }
 
