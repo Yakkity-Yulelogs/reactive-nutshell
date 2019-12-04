@@ -22,6 +22,12 @@ export class TasksCard extends Component {
             <button type="button" className="btn btn-danger"  onClick={()=>{
               this.props.handleDelete(this.props.task.id) // handle delete
             }}>Delete</button>
+
+            <button type="button" className="btn btn-secondary"  onClick={()=>{
+              this.props.history.push(`/tasks/${this.props.task.id}/edit` // Add new task routing
+              )
+            }}>Edit </button>
+          
             </div>
             
           </div>
