@@ -24,7 +24,6 @@ export class MessagesList extends Component {
 	}
 
 	editMessage = id => {
-		console.log('editing message', id)
 		this.props.history.push(`/messages/${id}/edit`)
 	}
 

@@ -30,7 +30,6 @@ export class MessagesEditForm extends Component {
     
     saveEditedEntry = e => {
         e.preventDefault()
-        // console.log('save button clicked')
         const { message, messageText } = this.state
         const editedEntry = {
             id: message.id,
@@ -38,7 +37,6 @@ export class MessagesEditForm extends Component {
             message: messageText,
             timestamp: message.timestamp,
         }
-        // console.log('editedEntry', editedEntry)
         saveEditedMessage(editedEntry)
         .then(()=>this.props.history.push("/messages"))
     }
