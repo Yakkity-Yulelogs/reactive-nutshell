@@ -1,19 +1,37 @@
+/* 
+    Purpose: Fetch list of messages in the database to then create MessagesCard components for each
+    Author: Ryan Bishop (2019)
+*/
+
 import React, { Component } from 'react';
 import ApiMessages from './ApiMessages';
 import MessagesCard from './MessagesCard';
 
-const { getAllMessages } = ApiMessages
+const { getAllMessages, deleteUserMessage } = ApiMessages
 export class MessagesList extends Component {
 	state = {
 		messages: []
 	};
 
+	updateStateMessages = (array) => {
+		this.setState({
+			messages: array
+		})
+	}
+
 	componentDidMount() {
-		getAllMessages().then((messages) => {
-            this.setState({
-                messages: messages
-            })
-		});
+		getAllMessages().then(this.updateStateMessages);
+	}
+
+	editMessage = id => {
+		console.log('editing message', id)
+	}
+
+	deleteMessage = id => {
+		console.log('deleting message', id)
+		deleteUserMessage(id)
+		.then(getAllMessages)
+		.then(this.updateStateMessages)
 	}
 
 	render() {
@@ -23,7 +41,12 @@ export class MessagesList extends Component {
 			    <div className="container-cards">
     				<h1>Messages</h1>
     				{messages.map((message) => {
-    					return <MessagesCard key={message.id} message={message} />;
+						return <MessagesCard
+									key={message.id} 
+									message={message}
+									editMessage={this.editMessage}
+									deleteMessage={this.deleteMessage}
+								/>;
     				})}
     			</div>
 			</>
