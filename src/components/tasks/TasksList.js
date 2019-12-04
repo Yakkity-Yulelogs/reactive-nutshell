@@ -23,7 +23,6 @@ class TaskList extends Component {
       expectedCompletionDate: objToToggle[0].expectedCompletionDate,
       isComplete: !objToToggle[0].isComplete // toggling
     }
-    console.log("edited object", editedObj)
     // PUT call
     ApiManager.update("tasks", editedObj)
       //rerouting
