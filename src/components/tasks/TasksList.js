@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import ApiManager from '../../modules/ApiManager.js'
 import TasksCard from './TasksCard'
 
-const loggedInUser = 1
+const loggedInUser = 1 // REPLACE WITH LOCALSTORAGE
 
 class TaskList extends Component {
   state = {
     tasks: []
   }
 
-//******************************************************************************
-//Re-renderer
-//******************************************************************************
-tasksRerenderer = () => {
-  ApiManager.getAll("tasks", `_sort=expectedCompletionDate&_order=asc&userId=${loggedInUser}`)
+  //******************************************************************************
+  //Re-renderer
+  //******************************************************************************
+  tasksRerenderer = () => {
+    ApiManager.getAll("tasks", `_sort=expectedCompletionDate&_order=asc&userId=${loggedInUser}`)
       .then((tasksArr) => {
         this.setState(
           {
@@ -21,11 +21,12 @@ tasksRerenderer = () => {
           }
         )
       })
-}
+  }
 
-//******************************************************************************
-//Handle Checkbox On/Off
-//******************************************************************************
+
+  //******************************************************************************
+  //Handle Checkbox On/Off
+  //******************************************************************************
   // toggling the isCompleted value based on if the checkbox is checked or not
   handleCheckbox = (id) => {
     // filtering the state array to get the relevant obj for edit
@@ -45,16 +46,16 @@ tasksRerenderer = () => {
       //re-rendering
       .then(() => this.tasksRerenderer())
   }
-//******************************************************************************
-// Handle Delete
-//******************************************************************************
+  //******************************************************************************
+  // Handle Delete
+  //******************************************************************************
   handleDelete = (id) => {
     ApiManager.delete("tasks", id)
-    .then (()=> this.tasksRerenderer())
+      .then(() => this.tasksRerenderer())
   }
-//******************************************************************************
-// componentDidMount()
-//******************************************************************************
+  //******************************************************************************
+  // componentDidMount()
+  //******************************************************************************
   // Fetching the data from the Json file and setting it as state
   componentDidMount() {
     ApiManager.getAll("tasks", `_sort=expectedCompletionDate&_order=asc&userId=${loggedInUser}`)
@@ -66,20 +67,28 @@ tasksRerenderer = () => {
         )
       })
   }
-//******************************************************************************
-// render()
-//******************************************************************************
+  //******************************************************************************
+  // render()
+  //******************************************************************************
   // Rendering the data from state
   render() {
     return (
       <>
+        <h1>Tasks</h1>
+
+        <button type="button" className="btn btn-primary"
+          onClick={() => {
+            this.props.history.push("/tasks/new" // handle delete
+            )
+          }}>Add New</button>
+
         {
           this.state.tasks.map(task =>
             <TasksCard
               key={task.id}
               task={task}
               handleCheckbox={this.handleCheckbox}
-              handleDelete = {this.handleDelete}
+              handleDelete={this.handleDelete}
             />
           )
         }
