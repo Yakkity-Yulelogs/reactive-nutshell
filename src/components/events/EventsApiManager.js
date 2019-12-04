@@ -16,6 +16,4 @@ export default {
     addNewEvent(eventObject) {
         return ApiManager.post("events", eventObject)
     }
-
-
 }

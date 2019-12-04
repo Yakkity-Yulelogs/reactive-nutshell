@@ -1,3 +1,5 @@
+//Author: Trey Suiter
+
 import React, { Component } from "react"
 import ApiManager from "../../modules/ApiManager"
 import { createDateTimeToISO } from '../../modules/DateTime'

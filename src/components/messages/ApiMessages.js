@@ -12,6 +12,9 @@ const ApiMessages = {
     },
     saveEditedMessage(editedMessageObj){
         return ApiManager.update("messages", editedMessageObj)
+    },
+    postNewMessage(newMessageObj){
+        return ApiManager.post("messages", newMessageObj)
     }
 }
 

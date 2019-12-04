@@ -41,6 +41,12 @@ export class MessagesList extends Component {
 			<>
 			    <div className="container-cards">
     				<h1>Messages</h1>
+					<button 
+						type="button"
+						className="btn btn-primary"
+						onClick={()=>this.props.history.push("/messages/new")}>
+							New Message
+					</button>
     				{messages.map((message) => {
 						return <MessagesCard
 									key={message.id} 
