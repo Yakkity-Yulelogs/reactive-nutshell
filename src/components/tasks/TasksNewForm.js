@@ -1,15 +1,27 @@
 import React, { Component } from 'react'
 
 export class TasksNewForm extends Component {
+//******************************************************************************
+//STATE
+//******************************************************************************
   state = {
     task: "",
     expectedCompletionDate: "",
     loadingStatus: false,
 };
 
+//******************************************************************************
+//Handle form FIELD CHANGE and update the STATE accordingly 
+//******************************************************************************
+handleFieldChange = evt => {
+  const stateToChange = {};
+  stateToChange[evt.target.id] = evt.target.value;
+  this.setState(stateToChange);
+};
 
-
-
+//******************************************************************************
+//render()
+//******************************************************************************
   render() {
     return (
       <div className="card">
@@ -39,7 +51,7 @@ export class TasksNewForm extends Component {
                         <button
                         type="button" className="btn btn-primary"
                         disabled={this.state.loadingStatus}
-                        onClick={this.constructNewAnimal}
+                        onClick={this.constructNewTask}
                         >Submit</button>
                     </div>
                 </fieldset>
