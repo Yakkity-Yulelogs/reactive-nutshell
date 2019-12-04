@@ -75,6 +75,7 @@ export class MessagesList extends Component {
 									isFriendOrSelf={isFriendOrSelf}
 									editMessage={this.editMessage}
 									deleteMessage={this.deleteMessage}
+									{...this.props}
 								/>;
     				})}
     			</div>

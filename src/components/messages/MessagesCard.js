@@ -5,14 +5,22 @@
 
 import React, { Component } from 'react'
 import { convertDateTimeFromISO } from '../../modules/DateTime'
+import ApiFriends from '../friends/ApiFriends'
 
+const { followNewFriend } = ApiFriends
 //TODO: replace with localStorage authentication later
 const loggedInUser = 1
 
 export class MessagesCard extends Component {
     handleClick = e => {
-        console.log('e.target', e.target)
-        console.log("userName clicked")
+        const userName = e.target.innerText
+        if (window.confirm(`Add ${userName} to your Friends list?`)){
+            const connection = {
+                loggedInUser: loggedInUser,
+                userId: Number(e.target.name)
+            };
+            followNewFriend(connection).then(() => this.props.history.push('/friends'));
+        }
     }
     render() {
         const { timestamp, message, userId } = this.props.message
@@ -25,13 +33,13 @@ export class MessagesCard extends Component {
             messageClasses = "currentUser"
         }
         const displayDateTime = convertDateTimeFromISO(timestamp).toLocaleString()
-        console.log('props', this.props.isFriendOrSelf)
+
         return (
             <div className={`${messageClasses} card`}>
                 <div className="card-body">
                     {this.props.isFriendOrSelf ?
                         <span><b>{fullName}</b></span> :
-                        <button className="btn btn-info stn-sm"
+                        <button data-toggle="tooltip" title="Add Friend" data-placement="top" name={userId} className="btn btn-info btn-sm"
                                 onClick={this.handleClick}>{fullName}</button>
                     }
                     <span className="small"> {displayDateTime} </span>
