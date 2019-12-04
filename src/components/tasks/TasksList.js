@@ -47,12 +47,22 @@ class TaskList extends Component {
       .then(() => this.tasksRerenderer())
   }
   //******************************************************************************
-  // Handle Delete
+  // Handle DELETE
   //******************************************************************************
   handleDelete = (id) => {
     ApiManager.delete("tasks", id)
       .then(() => this.tasksRerenderer())
   }
+
+  //******************************************************************************
+  //Handle EDIT
+  //******************************************************************************
+  handleEdit = (id) => {
+    console.log("EDIT key", id)
+  }
+
+
+
   //******************************************************************************
   // componentDidMount()
   //******************************************************************************
@@ -78,7 +88,7 @@ class TaskList extends Component {
 
         <button type="button" className="btn btn-primary"
           onClick={() => {
-            this.props.history.push("/tasks/new" // handle delete
+            this.props.history.push("/tasks/new" // Add new task routing
             )
           }}>Add New</button>
 
@@ -89,6 +99,8 @@ class TaskList extends Component {
               task={task}
               handleCheckbox={this.handleCheckbox}
               handleDelete={this.handleDelete}
+              handleEdit = {this.handleEdit}
+              {...this.props}
             />
           )
         }
