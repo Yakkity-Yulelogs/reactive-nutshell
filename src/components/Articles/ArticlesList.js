@@ -3,7 +3,8 @@
 import React, { Component } from 'react'
 import ArticlesCard from './ArticlesCard'
 import ApiManager from '../../modules/ApiManager'
-import { sortElementsByDate } from "../../modules/DateTime"
+// import { sortElementsByDate } from "../../modules/DateTime"
+import ArticlesApiManager from "../Articles/ArticlesApiManager"
 
 const loggedInUser = 1
 
@@ -13,26 +14,84 @@ class ArticlesList extends Component {
         articles: [],
     }
 
-    componentDidMount() {
-        ApiManager.getAll("articles", `userId=${loggedInUser}`)
-            .then((articlesArray) => {
-                this.setState({
-                    articles: sortElementsByDate(articlesArray, "timestamp")
-                })
-            })
+    putOwnFirstArticleFirst = (articlesArray) => {
+        const originalArray = articlesArray
+        const finalArray = []
+        let foundFirstArticle = false
+
+        for (const evt of originalArray) {
+
+            if (!foundFirstArticle && evt.userId === loggedInUser) {
+                finalArray.unshift(evt)
+                foundFirstArticle = true
+
+            } else {
+
+                finalArray.push(evt)
+            }
+        }
+        return finalArray
     }
 
-    deleteArticle = id => {
-        ApiManager.delete("articles", id)
-            .then(() => {
-                ApiManager.getAll("articles", `userId=${loggedInUser}`)
-                    .then((updatedArticles) => {
+    createStringOfFriends(friendsArray) {
+        let friendsParam = ""
+
+        for (const friend of friendsArray) {
+            friendsParam += `&userId=${friend.userId}`
+        }
+        console.log('is this freindsParam', friendsParam)
+        return friendsParam
+    }
+
+    componentDidMount() {
+
+        ArticlesApiManager.getAllFriends(loggedInUser)
+            .then(friendsList => {
+                console.log("is this a friends list?", friendsList)
+                return this.createStringOfFriends(friendsList)
+            })
+            .then(friendString => {
+                ArticlesApiManager.getUserAndFriendsArticlesSorted(loggedInUser, friendString)
+                    .then(articlesList => {
+                        console.log("is this an articles list?", articlesList)
                         this.setState({
-                            articles: sortElementsByDate(updatedArticles, "timestamp")
+                            articles: this.putOwnFirstArticleFirst(articlesList)
                         })
                     })
             })
     }
+
+    //     ApiManager.getAll("articles", `userId=${loggedInUser}`)
+    //         .then((articlesArray) => {
+    //             this.setState({
+    //                 articles: sortElementsByDate(articlesArray, "timestamp")
+    //             })
+    //         })
+    // }
+
+    deleteArticle = id => {
+        ApiManager.delete("articles", id)
+            .then(ArticlesApiManager.getAllFriends(loggedInUser)
+            .then(friendsList => {
+                return this.createStringOfFriends(friendsList)
+            })
+            .then(friendString => {
+                ArticlesApiManager.getUserAndFriendsArticlesSorted(loggedInUser, friendString)
+                    .then(articlesList => {
+                        this.setState({
+                            articles: this.putOwnFirstArticleFirst(articlesList)
+                        })
+                    })
+            })
+            //     ApiManager.getAll("articles", `userId=${loggedInUser}`)
+            //         .then((updatedArticles) => {
+            //             this.setState({
+            //                 articles: sortElementsByDate(updatedArticles, "timestamp")
+            //             })
+            //         })
+            // })
+            )
+        }
 
     render() {
 
@@ -49,6 +108,7 @@ class ArticlesList extends Component {
                     {this.state.articles.map(article =>
                         <ArticlesCard
                             key={article.id}
+                            loggedInUser={loggedInUser}
                             article={article}
                             deleteArticle={this.deleteArticle}
                             {...this.props}
