@@ -18,15 +18,17 @@ class EventsCard extends Component {
                             {this.props.event.location}
                             <br /><small>{this.props.event.eventDate}</small>
                         </p>
-                        <button
+                        {this.props.event.userId === this.props.loggedInUser ?
+                            <button
                             type="button"
                             className="btn btn-danger btn-sm"
                             onClick={() => {
                                 this.props.deleteEvent(this.props.event.id)
                             }}
-                        >
+                            >
                             Delete
                         </button>
+                        : null}
                     </div>
                 </div>
             </React.Fragment >

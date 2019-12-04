@@ -1,3 +1,8 @@
+/*
+    Purpose: Customized functions to make fetch calls for events from ApiManager
+    Author(s): Ryan Crowley
+*/
+
 import ApiManager from '../../modules/ApiManager'
 
 export default {

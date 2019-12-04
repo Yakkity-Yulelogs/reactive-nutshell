@@ -54,16 +54,20 @@ class EventsNewForm extends Component {
             <React.Fragment>
                 <form>
                     <fieldset>
+                        <h1>Add New Event</h1>
                         <div>
-                            <label htmlFor="eventName">Event Name</label>
+                            <label htmlFor="eventName">Event</label>
+                            <br />
                             <input 
                                 type="text"
                                 required
                                 onChange={this.handleFieldChange}
                                 id="eventName"
-                                placeholder="Event Name"
+                                placeholder="event"
                             />
-                            <label htmlFor="location">Location</label>
+                            <br />
+                            <label htmlFor="location">Where?</label>
+                            <br />
                             <input 
                                 type="text"
                                 required
@@ -71,7 +75,9 @@ class EventsNewForm extends Component {
                                 id="location"
                                 placeholder="Location"
                             />
-                            <label htmlFor="eventDate">Event Date</label>
+                            <br />
+                            <label htmlFor="eventDate">When?</label>
+                            <br />
                             <input 
                             // type="date" is causing a depreciation error
                                 type="date"
@@ -84,6 +90,7 @@ class EventsNewForm extends Component {
                         <div>
                             <button 
                                 type="button"
+                                className="btn btn-primary"
                                 // disabled= {this.state.loadingStatus}
                                 onClick={this.constructNewEvent}
                             >Submit
