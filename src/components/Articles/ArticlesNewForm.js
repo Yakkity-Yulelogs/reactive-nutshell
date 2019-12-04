@@ -67,6 +67,7 @@ class ArticlesNewForm extends Component {
                         </div>
                         <div className="alignRight">
                             <button
+                                className="btn btn-primary"
                                 type="button"
                                 disabled={this.state.loadingStatus}
                                 onClick={this.constructNewArticle}
