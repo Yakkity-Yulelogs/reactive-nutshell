@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import EventsApiManager from './EventsApiManager'
+import { convertDateTimeFromISO } from "../../modules/DateTime"
+
 
 // CHANGE THIS AFTER LOGIN
 const loggedInUser = 1
@@ -10,6 +12,25 @@ class EventsNewForm extends Component {
         eventDate: "",
         location: "",
         loadingStatus: false
+    }
+
+    // returns boolean of whether event takes place before today or not before today
+    isCurrentEvent = (eventObject) => {
+        const now = new Date()
+        const nowDay = (now.getDay()) + 1
+        const nowYear = now.getFullYear()
+        const nowMonth = (now.getMonth()) + 1
+
+        const eventFullDate = convertDateTimeFromISO(eventObject.eventDate)
+        const eventToday = (eventFullDate.getDay()) + 2
+        const eventMonth = (eventFullDate.getMonth()) + 1
+        const eventYear = eventFullDate.getFullYear()
+
+        if (eventYear >= nowYear && eventMonth >= nowMonth && eventToday >= nowDay) {
+            return true
+        } else {
+            return false
+        }
     }
 
     handleFieldChange = evt => {
@@ -30,10 +51,14 @@ class EventsNewForm extends Component {
                 eventDate: this.state.eventDate,
                 location: this.state.location
             }  
-            
-            // Post event to database and redirect user to Events List
-            EventsApiManager.addNewEvent(newEvent)    
-            .then(() => this.props.history.push("/events"))
+            if (this.isCurrentEvent(newEvent)) {
+                // Post event to database and redirect user to Events List
+                EventsApiManager.addNewEvent(newEvent)    
+                .then(() => this.props.history.push("/events"))
+            } else {
+                this.setState({loadingStatus: false})
+                window.alert("Please input a date not in the past")
+            }  
         }
     }
 
@@ -61,6 +86,7 @@ class EventsNewForm extends Component {
                             />
                             <label htmlFor="eventDate">Event Date</label>
                             <input 
+                            // type="date" is causing a depreciation error
                                 type="date"
                                 required
                                 onChange={this.handleFieldChange}

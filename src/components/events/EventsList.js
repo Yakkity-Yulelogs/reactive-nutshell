@@ -34,7 +34,6 @@ class EventsList extends Component {
         } else {
             return false
         }
-
     }
 
     // returns new array where loggedInUser's first event is always the first event
@@ -91,6 +90,13 @@ class EventsList extends Component {
     render() {
         return (
             <React.Fragment>
+                <div>
+                    <button
+                        type="button"
+                        onClick={() => {this.props.history.push('/events/new')}}>
+                        New Event
+                    </button>
+                </div>
                 <div className="container-cards" id="events">
                     {this.state.events.map(event =>
                         <EventsCard
