@@ -11,6 +11,10 @@ export default {
 
     getAllFriends(user) {
         return ApiManager.getAll("friends", `loggedInUser=${user}`)
+    },
+
+    addNewEvent(eventObject) {
+        return ApiManager.post("events", eventObject)
     }
 
 

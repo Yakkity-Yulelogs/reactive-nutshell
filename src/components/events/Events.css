@@ -1,4 +1,4 @@
-#events .card:first-child {
+#events .own-event:first-child {
     font-weight: bold;
     font-size: 1.15em;
     background-color: rgba(216, 215, 215, 0.673);
