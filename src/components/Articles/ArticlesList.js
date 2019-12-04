@@ -1,3 +1,5 @@
+//Author: Trey Suiter
+
 import React, { Component } from 'react'
 import ArticlesCard from './ArticlesCard'
 import ApiManager from '../../modules/ApiManager'

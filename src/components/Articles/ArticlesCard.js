@@ -1,3 +1,5 @@
+//Author: Trey Suiter
+
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { convertDateTimeFromISO } from '../../modules/DateTime'
