@@ -65,6 +65,11 @@ export class MessagesList extends Component {
 
 	render() {
 		const { messages } = this.state;
+		const center = {
+			textAlign: "center", 
+			width: "100%"
+		}
+
 		const scrollContainer = {
 			height: "400px",
 			overflow: "auto",
@@ -73,15 +78,17 @@ export class MessagesList extends Component {
 		return (
 			<>
 			    <div className="container-cards">
-    				<h1>Messages</h1>
-					<button 
-						type="button"
-						className="btn btn-primary"
-						onClick={()=>this.props.history.push("/messages/new")}>
-							New Message
-					</button>
+    				<div style={center}>
+    					<h1>Messages</h1>
+						<button 
+							type="button"
+							className="btn btn-primary"
+							onClick={()=>this.props.history.push("/messages/new")}>
+								New Message
+						</button>
+    				</div>
     				<div id="scroll-containre" style={scrollContainer}>
-						<div>(Oldest)</div>
+						<div style={center}>(Oldest)</div>
     					{messages.map((message) => {
 							// check for friendStatus to display button logic to add new friends
 							const isFriendOrSelf = this.state.friendIds.includes(message.userId) ||
@@ -97,7 +104,7 @@ export class MessagesList extends Component {
 	    				})}
 						{/* enables auto-scroll to the bottom of the chat window to show most recent message*/}
 						{/* https://stackoverflow.com/questions/37620694/how-to-scroll-to-bottom-in-react */}
-						<div style={{ float:"left", clear: "both" }}
+						<div style={{ float:"left", clear: "both", textAlign: "center", width: "100%" }}
              				ref={(el) => { this.messagesEnd = el; }}>(Newest)
         				</div>
     				</div>
