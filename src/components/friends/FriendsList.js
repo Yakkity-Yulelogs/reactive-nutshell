@@ -6,28 +6,24 @@ export class FriendsList extends Component {
         friends: [],
     }
 
+    updateFriendsState = array => {
+        const newState = { friends: [] };
+        array.forEach(friend => {
+            // include deleteId so that can delete the correct primary key from "friends" endpoint
+            newState.friends = [...newState.friends, { deleteId: friend.id, ...friend.user }]
+        })
+        this.setState(newState)    
+    }
+
     componentDidMount() {
         ApiFriends.getAllFriendsWithNames()
-            .then(friends => {
-                const newState = { friends: []};
-                friends.forEach(friend => {
-                    newState.friends = [...newState.friends,{deleteId: friend.id, ...friend.user}]
-                })
-                this.setState(newState)
-            })
+            .then(this.updateFriendsState)
     }
 
     removeFriend = id => {
-        // console.log('removing friend', id)
         ApiFriends.removeFriend(id)
             .then(ApiFriends.getAllFriendsWithNames)
-            .then(friends => {
-                const newState = { friends: []};
-                friends.forEach(friend => {
-                    newState.friends = [...newState.friends,{deleteId: friend.id, ...friend.user}]
-                })
-                this.setState(newState)
-            })
+            .then(this.updateFriendsState)
     }
 
     render() {
@@ -36,12 +32,13 @@ export class FriendsList extends Component {
         return (
             <div className="container-cards">
                 <h1>User Friends</h1>
-                {friends.map(friend => {
+                <button className="btn btn-primary" onClick={() => this.props.history.push("/friends/new")}>Add New Friend</button>
+                {friends.map(user => {
                     return <FriendsCard 
-                                key={friend.id}
-                                friend={friend} 
+                                key={user.id}
+                                user={user}
+                                isFriend={true}
                                 removeFriend={this.removeFriend}
-                                // {...this.props}        
                                 />
                 })}
             </div>
