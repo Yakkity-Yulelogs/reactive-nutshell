@@ -16,8 +16,17 @@ class EventsCard extends Component {
                         <h3>{this.props.event.eventName}</h3>
                         <p>
                             {this.props.event.location}
-                            <br />{this.props.event.eventDate}
+                            <br /><small>{this.props.event.eventDate}</small>
                         </p>
+                        <button
+                            type="button"
+                            className="btn btn-danger btn-sm"
+                            onClick={() => {
+                                this.props.deleteEvent(this.props.event.id)
+                            }}
+                        >
+                            Delete
+                        </button>
                     </div>
                 </div>
             </React.Fragment >

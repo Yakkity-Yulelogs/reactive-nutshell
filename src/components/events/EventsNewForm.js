@@ -1,6 +1,10 @@
+/*
+    Purpose: Display a form that allows a user to add a new event.
+    Author(s): Ryan Crowley
+*/
 import React, { Component } from 'react'
 import EventsApiManager from './EventsApiManager'
-import { convertDateTimeFromISO } from "../../modules/DateTime"
+import { isCurrentEvent } from './EventsHelpers'
 
 
 // CHANGE THIS AFTER LOGIN
@@ -14,24 +18,7 @@ class EventsNewForm extends Component {
         loadingStatus: false
     }
 
-    // returns boolean of whether event takes place before today or not before today
-    isCurrentEvent = (eventObject) => {
-        const now = new Date()
-        const nowDay = (now.getDay()) + 1
-        const nowYear = now.getFullYear()
-        const nowMonth = (now.getMonth()) + 1
-
-        const eventFullDate = convertDateTimeFromISO(eventObject.eventDate)
-        const eventToday = (eventFullDate.getDay()) + 2
-        const eventMonth = (eventFullDate.getMonth()) + 1
-        const eventYear = eventFullDate.getFullYear()
-
-        if (eventYear >= nowYear && eventMonth >= nowMonth && eventToday >= nowDay) {
-            return true
-        } else {
-            return false
-        }
-    }
+    
 
     handleFieldChange = evt => {
         const stateToChange = {}
@@ -51,7 +38,7 @@ class EventsNewForm extends Component {
                 eventDate: this.state.eventDate,
                 location: this.state.location
             }  
-            if (this.isCurrentEvent(newEvent)) {
+            if (isCurrentEvent(newEvent)) {
                 // Post event to database and redirect user to Events List
                 EventsApiManager.addNewEvent(newEvent)    
                 .then(() => this.props.history.push("/events"))
@@ -97,7 +84,7 @@ class EventsNewForm extends Component {
                         <div>
                             <button 
                                 type="button"
-                                disabled= {this.state.loadingStatus}
+                                // disabled= {this.state.loadingStatus}
                                 onClick={this.constructNewEvent}
                             >Submit
                             </button>
