@@ -6,6 +6,6 @@ export default {
     },
 
     getUserAndFriendsArticlesSorted(userId, friendString) {
-        return ApiManager.getAll("articles", `userId=${userId}${friendString}&_sort=timestamp&_order=asc`)
+        return ApiManager.getAll("articles", `userId=${userId}${friendString}&_sort=timestamp&_order=asc&_expand=user`)
     }
 }

@@ -72,6 +72,7 @@ class ArticlesList extends Component {
                     {this.state.articles.map(article =>
                         <ArticlesCard
                             key={article.id}
+                            userName={article.user.fullName}
                             loggedInUser={loggedInUser}
                             article={article}
                             deleteArticle={this.deleteArticle}
