@@ -68,6 +68,14 @@ class EventsNewForm extends Component {
                                 placeholder="Event Date"
                             />
                         </div>
+                        <div>
+                            <button 
+                                type="button"
+                                disabled= {this.state.loadingStatus}
+                                onClick={this.constructNewEvent}
+                            >Submit
+                            </button>
+                        </div>
                     </fieldset>
                 </form>
             </React.Fragment>

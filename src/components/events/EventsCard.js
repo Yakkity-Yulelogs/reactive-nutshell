@@ -3,7 +3,7 @@
     Author(s): Ryan Crowley
 */
 import React, { Component } from 'react'
-import { convertDateTimeFromISO } from "../../modules/DateTime"
+
 
 
 class EventsCard extends Component {
@@ -16,7 +16,7 @@ class EventsCard extends Component {
                         <h3>{this.props.event.eventName}</h3>
                         <p>
                             {this.props.event.location}
-                            <br />{convertDateTimeFromISO(this.props.event.eventDate).toDateString()}
+                            <br />{this.props.event.eventDate}
                         </p>
                     </div>
                 </div>

@@ -25,7 +25,7 @@ class EventsList extends Component {
         const nowMonth = (now.getMonth()) + 1
 
         const eventFullDate = convertDateTimeFromISO(eventObject.eventDate)
-        const eventToday = (eventFullDate.getDay()) + 1
+        const eventToday = (eventFullDate.getDay()) + 2
         const eventMonth = (eventFullDate.getMonth()) + 1
         const eventYear = eventFullDate.getFullYear()
 
