@@ -1,6 +1,5 @@
 import ApiManager from '../../modules/ApiManager'
 
-
 export default {
     getAllFriends(user) {
         return ApiManager.getAll("friends", `loggedInUser=${user}`)
@@ -12,6 +11,4 @@ export default {
     getFriendName(friendId) {
         return ApiManager.get("friends", `${friendId}`)
     }
-
-
 }
