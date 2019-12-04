@@ -7,6 +7,7 @@ import ArticlesList from "../components/Articles/ArticlesList"
 import ArticlesNewForm from "../components/Articles/ArticlesNewForm"
 import FriendsNewForm from "./friends/FriendsNewForm";
 import ArticleEditForm from "../components/Articles/ArticlesEditForm"
+import TasksNewForm from "./tasks/TasksNewForm";
 
 export default class ApplicationViews extends Component {
 
@@ -54,10 +55,13 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/tasks" render={props => {
+          exact path="/tasks" render={props => {
             return <TasksList {...props} />
           }}
         />
+        <Route path="/tasks/new" render={(props) => {
+          return <TasksNewForm {...props} />
+        }} />
 
         <Route
           path="/events" render={props => {
