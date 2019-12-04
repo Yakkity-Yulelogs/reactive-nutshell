@@ -5,7 +5,7 @@ import Nutshell from './components/Nutshell'
 import './index.css'
 
 ReactDOM.render(
-  <Router>
+  <Router forceRefresh={true}>
       <Nutshell />
   </Router>
   , document.getElementById('root'))

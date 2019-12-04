@@ -11,18 +11,23 @@ class TaskList extends Component {
 
   // toggling the isCompleted value based on if the checkbox is checked or not
     handleCheckbox = (id) => {
-      // {isComplete: !this.state.tasks[id].isComplete})
-       console.log("taskId", this.state.tasks[id].id, this.state.tasks[id].isComplete)
-       const editedObj = {
-        id: this.state.tasks[id].id,
-        userId: this.state.tasks[id].userId,
-        task: this.state.tasks[id].task,
-        // expectedCompletionDate: this.state.task[id].expectedCompletionDate,
-        isComplete: !this.state.tasks[id].isComplete
+      // filtering the state array to get the relevant obj for edit
+      let objToToggle = this.state.tasks.filter(obj => {
+        return obj.id===id
+      })
+      // creating an object for the PUT call
+      const editedObj = {
+        id: objToToggle[0].id,
+        userId: objToToggle[0].userId,
+        task: objToToggle[0].task,
+        expectedCompletionDate: objToToggle[0].expectedCompletionDate,
+        isComplete: !objToToggle[0].isComplete // toggling
        }
-       console.log (editedObj)
-      ApiManager.update("tasks", editedObj)
-
+       console.log ("edited object",editedObj)
+        // PUT call
+        ApiManager.update("tasks", editedObj)
+        //rerouting
+        .then(() => this.props.history.push("/tasks"))
   }
 
 
