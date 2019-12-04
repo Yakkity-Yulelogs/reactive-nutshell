@@ -8,7 +8,7 @@ class ArticleCard extends Component {
 
     render() {
         return (
-            <div className={`card ${this.props.article.userId !== this.props.loggedInUser ? "friend-article" : null }`}>
+            <div className={`card ${this.props.article.userId !== this.props.loggedInUser ? "friend-article" : null}`}>
                 <div className="card-content">
                     <h2>Title: <span className="card-articleName">{this.props.article.title}</span></h2>
                     <p>{`${this.props.friendNameObject.fullName}`}</p>

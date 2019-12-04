@@ -61,37 +61,22 @@ class ArticlesList extends Component {
             })
     }
 
-    //     ApiManager.getAll("articles", `userId=${loggedInUser}`)
-    //         .then((articlesArray) => {
-    //             this.setState({
-    //                 articles: sortElementsByDate(articlesArray, "timestamp")
-    //             })
-    //         })
-    // }
-
     deleteArticle = id => {
         ApiManager.delete("articles", id)
             .then(ArticlesApiManager.getAllFriends(loggedInUser)
-            .then(friendsList => {
-                return this.createStringOfFriends(friendsList)
-            })
-            .then(friendString => {
-                ArticlesApiManager.getUserAndFriendsArticlesSorted(loggedInUser, friendString)
-                    .then(articlesList => {
-                        this.setState({
-                            articles: this.putOwnFirstArticleFirst(articlesList)
+                .then(friendsList => {
+                    return this.createStringOfFriends(friendsList)
+                })
+                .then(friendString => {
+                    ArticlesApiManager.getUserAndFriendsArticlesSorted(loggedInUser, friendString)
+                        .then(articlesList => {
+                            this.setState({
+                                articles: this.putOwnFirstArticleFirst(articlesList)
+                            })
                         })
-                    })
-            })
-            //     ApiManager.getAll("articles", `userId=${loggedInUser}`)
-            //         .then((updatedArticles) => {
-            //             this.setState({
-            //                 articles: sortElementsByDate(updatedArticles, "timestamp")
-            //             })
-            //         })
-            // })
+                })
             )
-        }
+    }
 
     render() {
 
@@ -107,7 +92,7 @@ class ArticlesList extends Component {
                 <div className="container-cards">
                     {this.state.articles.map(article =>
                         <ArticlesCard
-                            friendNameObject = {ArticlesApiManager.getFriendName(article.userId)}
+                            friendNameObject={() => ArticlesApiManager.getFriendName(article.userId)}
                             key={article.id}
                             loggedInUser={loggedInUser}
                             article={article}
