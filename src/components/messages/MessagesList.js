@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import ApiMessages from './ApiMessages';
 import MessagesCard from './MessagesCard';
 
+const { getAllMessages } = ApiMessages
 export class MessagesList extends Component {
 	state = {
 		messages: []
 	};
 
 	componentDidMount() {
-		ApiMessages.getAllMessages().then((messages) => {
-            console.log('messages', messages);
+		getAllMessages().then((messages) => {
             this.setState({
                 messages: messages
             })

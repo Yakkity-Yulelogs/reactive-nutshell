@@ -7,6 +7,8 @@ export class MessagesCard extends Component {
     render() {
         const { timestamp, message, userId } = this.props.message
         const { user: { fullName }} = this.props.message
+
+        // setup unique message styling for current user
         let messageClasses = "otherUser"
         if (loggedInUser === userId){
             messageClasses = "currentUser"
