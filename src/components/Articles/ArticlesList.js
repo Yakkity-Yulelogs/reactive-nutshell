@@ -107,6 +107,7 @@ class ArticlesList extends Component {
                 <div className="container-cards">
                     {this.state.articles.map(article =>
                         <ArticlesCard
+                            friendNameObject = {ArticlesApiManager.getFriendName(article.userId)}
                             key={article.id}
                             loggedInUser={loggedInUser}
                             article={article}
