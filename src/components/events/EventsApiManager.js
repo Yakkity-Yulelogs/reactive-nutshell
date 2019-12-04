@@ -12,6 +12,4 @@ export default {
     getAllFriends(user) {
         return ApiManager.getAll("friends", `loggedInUser=${user}`)
     }
-
-
 }

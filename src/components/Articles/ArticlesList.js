@@ -5,6 +5,7 @@ import ArticlesCard from './ArticlesCard'
 import ApiManager from '../../modules/ApiManager'
 // import { sortElementsByDate } from "../../modules/DateTime"
 import ArticlesApiManager from "../Articles/ArticlesApiManager"
+import "./Articles.css"
 
 const loggedInUser = 1
 
@@ -14,24 +15,24 @@ class ArticlesList extends Component {
         articles: [],
     }
 
-    putOwnFirstArticleFirst = (articlesArray) => {
-        const originalArray = articlesArray
-        const finalArray = []
-        let foundFirstArticle = false
+    // putOwnFirstArticleFirst = (articlesArray) => {
+    //     const originalArray = articlesArray
+    //     const finalArray = []
+    //     let foundFirstArticle = false
 
-        for (const evt of originalArray) {
+    //     for (const evt of originalArray) {
 
-            if (!foundFirstArticle && evt.userId === loggedInUser) {
-                finalArray.unshift(evt)
-                foundFirstArticle = true
+    //         if (!foundFirstArticle && evt.userId === loggedInUser) {
+    //             finalArray.unshift(evt)
+    //             foundFirstArticle = true
 
-            } else {
+    //         } else {
 
-                finalArray.push(evt)
-            }
-        }
-        return finalArray
-    }
+    //             finalArray.push(evt)
+    //         }
+    //     }
+    //     return finalArray
+    // }
 
     createStringOfFriends(friendsArray) {
         let friendsParam = ""
@@ -53,9 +54,8 @@ class ArticlesList extends Component {
             .then(friendString => {
                 ArticlesApiManager.getUserAndFriendsArticlesSorted(loggedInUser, friendString)
                     .then(articlesList => {
-                        console.log("is this an articles list?", articlesList)
                         this.setState({
-                            articles: this.putOwnFirstArticleFirst(articlesList)
+                            articles: articlesList
                         })
                     })
             })

@@ -7,7 +7,7 @@ import { convertDateTimeFromISO } from '../../modules/DateTime'
 class ArticleCard extends Component {
     render() {
         return (
-            <div className={`card ${this.props.userId !== this.props.loggedInUser ? "friend-article" : null }`}>
+            <div className={`card ${this.props.article.userId !== this.props.loggedInUser ? "friend-article" : null }`}>
                 <div className="card-content">
                     <h2>Title: <span className="card-articleName">{this.props.article.title}</span></h2>
                     <p>Synopsis: <span>{this.props.article.synopsis}</span></p>
