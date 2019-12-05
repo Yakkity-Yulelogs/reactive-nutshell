@@ -52,7 +52,7 @@ class EventsNewForm extends Component {
     render() {
         return(
             <React.Fragment>
-                <form>
+                <form className="card-body">
                     <fieldset>
                         <h1>Add New Event</h1>
                         <div>
@@ -61,6 +61,7 @@ class EventsNewForm extends Component {
                             <input 
                                 type="text"
                                 required
+                                className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="eventName"
                                 placeholder="event"
@@ -71,6 +72,7 @@ class EventsNewForm extends Component {
                             <input 
                                 type="text"
                                 required
+                                className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="location"
                                 placeholder="Location"
@@ -82,11 +84,13 @@ class EventsNewForm extends Component {
                             // type="date" is causing a depreciation error
                                 type="date"
                                 required
+                                className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="eventDate"
                                 placeholder="Event Date"
                             />
                         </div>
+                        <br />
                         <div>
                             <button 
                                 type="button"

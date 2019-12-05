@@ -62,21 +62,22 @@ export class FriendsNewForm extends Component {
 		const { nonFriends } = this.state;
 
 		return (
-			<div className="container-cards">
+			<div className="card-body">
 				<h1>Add New Friend</h1>
 				<input
 					id="searchTerm"
 					placeholder="Search Users"
+					className="form-control"
 					onChange={this.handleChange}
 					onKeyPress={this.searchUserNames}
-				/>
+				/><br />
 				<h3>Search Results</h3>
-				<button className="btn btn-info" onClick={() => this.props.history.push('/friends')}>
-					Go To Friends
-				</button>
 				{nonFriends.map((user) => {
 					return <FriendsCard key={user.id} user={user} isFriend={false} addFriend={this.addFriend} />;
-				})}
+				})}<br />
+				<button className="btn btn-primary" onClick={() => this.props.history.push('/friends')}>
+					Go To Friends
+				</button>
 			</div>
 		);
 	}

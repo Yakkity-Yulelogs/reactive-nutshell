@@ -50,25 +50,27 @@ class ArticlesNewForm extends Component {
     render() {
         return (
             <>
-                <form className="card-body"> 
+                <form className="card-body">
                     <fieldset>
+                        <h1>Add New Article</h1>
                         <div className="formgrid">
+                            <label htmlFor="articleTitle">Title</label>
                             <input type="text"
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="articleTitle"
                                 placeholder="Title Here"
-                            />
-                            <label htmlFor="articleTitle">Title</label>
+                            /><br />
+                            <label htmlFor="breed">Synopsis</label>
                             <input type="text"
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="synopsis"
                                 placeholder="Synopsis Here"
-                            />
-                            <label htmlFor="breed">Synopsis</label>
+                            /><br />
+                            <label htmlFor="breed">Link</label>
                             <input type="text"
                                 required
                                 className="form-control"
@@ -76,8 +78,9 @@ class ArticlesNewForm extends Component {
                                 id="url"
                                 placeholder="Link Here"
                             />
-                            <label htmlFor="breed">Link</label>
+
                         </div>
+                        <br />
                         <div className="alignRight">
                             <button
                                 className="btn btn-primary"

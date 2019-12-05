@@ -60,56 +60,63 @@ class EventsEditForm extends Component {
     }
 
     render() {
-        return(
+        return (
             <React.Fragment>
-                <form>
+                <form className="card-body">
                     <fieldset>
                         <h1>Edit Event</h1>
-                        <div>
-                            <label htmlFor="eventName">Event</label>
+                        <div className="formgrid">
+                            <div>
+                                <label htmlFor="eventName">Event</label>
+                                <br />
+                                <input
+                                    type="text"
+                                    required
+                                    className="form-control"
+                                    onChange={this.handleFieldChange}
+                                    value={this.state.eventName}
+                                    id="eventName"
+                                    placeholder="event"
+                                />
+                                <br />
+                                <label htmlFor="location">Where?</label>
+                                <br />
+                                <input
+                                    type="text"
+                                    required
+                                    className="form-control"
+                                    onChange={this.handleFieldChange}
+                                    value={this.state.location}
+                                    id="location"
+                                    placeholder="Location"
+                                />
+                                <br />
+                                <label htmlFor="eventDate">When?</label>
+                                <br />
+                                <input
+                                    // type="date" is causing a depreciation error
+                                    type="date"
+                                    required
+                                    className="form-control"
+                                    onChange={this.handleFieldChange}
+                                    value={this.state.eventDate}
+                                    id="eventDate"
+                                    placeholder="Event Date"
+                                />
+                            </div>
                             <br />
-                            <input 
-                                type="text"
-                                required
-                                onChange={this.handleFieldChange}
-                                value={this.state.eventName}
-                                id="eventName"
-                                placeholder="event"
-                            />
-                            <br />
-                            <label htmlFor="location">Where?</label>
-                            <br />
-                            <input 
-                                type="text"
-                                required
-                                onChange={this.handleFieldChange}
-                                value={this.state.location}
-                                id="location"
-                                placeholder="Location"
-                            />
-                            <br />
-                            <label htmlFor="eventDate">When?</label>
-                            <br />
-                            <input 
-                            // type="date" is causing a depreciation error
-                                type="date"
-                                required
-                                onChange={this.handleFieldChange}
-                                value={this.state.eventDate}
-                                id="eventDate"
-                                placeholder="Event Date"
-                            />
-                        </div>
-                        <div>
-                            <button 
-                                type="button"
-                                className="btn btn-primary"
-                                // disabled= {this.state.loadingStatus}
-                                onClick={this.updateExistingEvent}
-                            >Update
+                            <div>
+                                <button
+                                    type="button"
+                                    className="btn btn-primary"
+                                    // disabled= {this.state.loadingStatus}
+                                    onClick={this.updateExistingEvent}
+                                >Update
                             </button>
+                            </div>
                         </div>
                     </fieldset>
+
                 </form>
             </React.Fragment>
         )

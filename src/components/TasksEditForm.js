@@ -58,29 +58,30 @@ updateExistingTask = evt => {
   render() {
     return (
       <>
-        <form>
+        <form className="card-body">
           <fieldset>
-            <div className="card">
+            <h1>Edit Task</h1>
+            <div className="formgrid">
             <label htmlFor="task">Task</label>
               <input
                 type="text"
                 required
-                className="card-content"
+                className="form-control"
                 onChange={this.handleFieldChange}
                 id="task"
                 value={this.state.task}
-              />
+              /><br />
               <label htmlFor="expectedCompletionDate">Due on</label>
 
               <input
                 type="date"
                 required
-                className="card-content"
+                className="form-control"
                 onChange={this.handleFieldChange}
                 id="expectedCompletionDate"
                 value={this.state.expectedCompletionDate}
               />
-            </div>
+            </div><br />
 
             <div className="alignRight">
               <button

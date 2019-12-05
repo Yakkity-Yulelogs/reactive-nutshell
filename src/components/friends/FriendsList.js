@@ -12,7 +12,7 @@ export class FriendsList extends Component {
             // include deleteId so that can delete the correct primary key from "friends" endpoint
             newState.friends = [...newState.friends, { deleteId: friend.id, ...friend.user }]
         })
-        this.setState(newState)    
+        this.setState(newState)
     }
 
     componentDidMount() {
@@ -30,18 +30,25 @@ export class FriendsList extends Component {
         const { friends } = this.state
 
         return (
-            <div className="container-cards">
-                <h1>User Friends</h1>
-                <button className="btn btn-primary" onClick={() => this.props.history.push("/friends/new")}>Add New Friend</button>
-                {friends.map(user => {
-                    return <FriendsCard 
-                                key={user.id}
-                                user={user}
-                                isFriend={true}
-                                removeFriend={this.removeFriend}
-                                />
-                })}
-            </div>
+            <>
+
+                <section className="section-content">
+                    <h1>User Friends</h1>
+                    <button className="btn btn-primary" onClick={() => this.props.history.push("/friends/new")}>Add New Friend</button>
+                </section>
+                <div className="container-cards">
+
+
+                    {friends.map(user => {
+                        return <FriendsCard
+                            key={user.id}
+                            user={user}
+                            isFriend={true}
+                            removeFriend={this.removeFriend}
+                        />
+                    })}
+                </div>
+            </>
         )
     }
 }

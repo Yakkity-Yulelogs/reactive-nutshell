@@ -72,6 +72,7 @@ class ArticlesList extends Component {
         return (
             <>
                 <section className="section-content">
+                    <h1>Articles</h1>
                     <button type="button"
                         className="btn btn-primary"
                         onClick={() => { this.props.history.push("/articles/new") }}>

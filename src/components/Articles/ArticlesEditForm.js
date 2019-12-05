@@ -62,7 +62,9 @@ class ArticleEditForm extends Component {
             <>
                 <form className="card-body">
                     <fieldset>
+                        <h1>Edit Article</h1>
                         <div className="formgrid">
+                        <label htmlFor="animalName">Title</label>
                             <input
                                 type="text"
                                 required
@@ -70,8 +72,8 @@ class ArticleEditForm extends Component {
                                 onChange={this.handleFieldChange}
                                 id="articleTitle"
                                 value={this.state.articleTitle}
-                            />
-                            <label htmlFor="animalName">Title</label>
+                            /><br />
+                            <label htmlFor="breed">Synopsis</label>
                             <input
                                 type="text"
                                 required
@@ -79,8 +81,8 @@ class ArticleEditForm extends Component {
                                 onChange={this.handleFieldChange}
                                 id="synopsis"
                                 value={this.state.synopsis}
-                            />
-                            <label htmlFor="breed">Synopsis</label>
+                            /> <br />
+                            <label htmlFor="breed">Link</label>
                             <input
                                 type="text"
                                 required
@@ -89,8 +91,8 @@ class ArticleEditForm extends Component {
                                 id="url"
                                 value={this.state.url}
                             />
-                            <label htmlFor="breed">Link</label>
-                        </div>
+                            
+                        </div><br />
                         <div className="alignRight">
                             <button
                                 type="button" disabled={this.state.loadingStatus}
