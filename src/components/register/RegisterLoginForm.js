@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export class RegisterLoginForm extends Component {
 	state = {
 		email: '',
-		password: ''
+		password: '',
 	};
 
 	handleFieldChange = e => {

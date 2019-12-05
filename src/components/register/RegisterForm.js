@@ -2,25 +2,31 @@ import React, { Component } from 'react'
 
 export class RegisterForm extends Component {
   state = {
-		email: '',
+    email: '',
     password: '',
     passwordA: '',
     passwordB: '',
     buttonDisabled: true
-	};
+  };
 
-	handleFieldChange = e => {
+  handleFieldChange = e => {
     // this.validatePasswordMatch()
     const stateToChange = {}
-		stateToChange[e.target.id] = e.target.value
+    stateToChange[e.target.id] = e.target.value
     this.setState(stateToChange)
     // this.validatePasswordMatch()
   };
-  
+
+  // handleEmailChange = (evt) => this.setState({ email: evt.target.value });
+  // handlePasswordAChange = (evt) => this.setState({ passwordA: evt.target.value });
+  // handlePasswordBChange = (evt) => this.setState({ passwordB: evt.target.value });
+
+
+
   handleLogin = e => {
     e.preventDefault()
     const { passwordA, passwordB } = this.state
-    if (passwordA === passwordB && passwordA !== ""){
+    if (passwordA === passwordB && passwordA !== "") {
       this.props.setUser({
         email: this.state.email,
         password: this.state.passwordA,
@@ -33,6 +39,10 @@ export class RegisterForm extends Component {
   }
 
   render() {
+
+    const { email, passwordA, passwordB } = this.state;
+    const isEnabled = email.length > 0 && passwordA.length > 0 && passwordB.length > 0 && passwordA === passwordB;
+
     return (
       <div>
         <div className="jumbotron text-center">
@@ -41,10 +51,10 @@ export class RegisterForm extends Component {
           <div className="card">
             <div className="card-content">
               <form onSubmit={this.handleLogin}>
-                <input type="text" placeholder="Email" id="email" onChange={this.handleFieldChange} required></input> <br/>
-                <input type="password" placeholder="Password" id="passwordA" onChange={this.handleFieldChange} required></input><br/>                
-                <input type="password" placeholder="Password Again" id="passwordB" onChange={this.handleFieldChange} required></input><br/>
-                <button type="submit" value="Submit" className="btn btn-primary">Submit</button>
+                <input type="text" placeholder="Email" id="email" onChange={this.handleFieldChange} required></input> <br />
+                <input type="password" placeholder="Password" id="passwordA" onChange={this.handleFieldChange} required></input><br />
+                <input type="password" placeholder="Password Again" id="passwordB" onChange={this.handleFieldChange} required></input><br />
+                <button type="submit" value="Submit" className="btn btn-primary" disabled={!isEnabled}>Submit</button>
               </form>
             </div>
           </div>
