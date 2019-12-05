@@ -53,23 +53,26 @@ constructNewTask = evt => {
 //******************************************************************************
   render() {
     return (
-      <div className="card">
-        <h1> Add New Task</h1>
-          <form>
+      <div>
+        
+          <form className="card-body">
                 <fieldset>
+                <h1> Add New Task</h1>
                     <div className="card-content">
                         <input
                         type="text"
                         required
+                        className="form-control"
                         onChange={this.handleFieldChange}
                         id="task"
                         placeholder="Task Name"
                         />
-                      </div>
+                      </div><br />
                       <div>
                         <input
                         type="date"
                         required
+                        className="form-control"
                         onChange={this.handleFieldChange}
                         id="expectedCompletionDate"
                         placeholder="Due On"

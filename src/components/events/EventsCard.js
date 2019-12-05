@@ -23,14 +23,14 @@ class EventsCard extends Component {
                             <div className="buttons">
                                 <button
                                     type="button"
-                                    className="btn btn-danger btn-sm"
+                                    className="btn btn-danger"
                                     onClick={() => {
                                         this.props.deleteEvent(this.props.event.id)
                                     }}
                                 >Delete</button>
                                 <button
                                     type="button"
-                                    className="btn btn-warning btn-sm"
+                                    className="btn btn-warning"
                                     onClick={() => {
                                         this.props.history.push(`/events/${this.props.event.id}/edit`)
                                     }}
