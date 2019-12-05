@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import RegisterForm from "./RegisterForm"
+import RegisterLoginForm from "./RegisterLoginForm"
+
+
+const loggedInUser = 1 // REPLACE WITH LOCALSTORAGE
+
 
 export class RegisterMain extends Component {
   render() {
@@ -13,11 +18,12 @@ export class RegisterMain extends Component {
             </div>
           </div>
         </div>
-        
-        <RegisterForm/>
 
+
+{      loggedInUser == null ? <RegisterForm /> : <RegisterLoginForm /> // lets check for user existence
+}
       </div>
-      
+
 
 
     )
