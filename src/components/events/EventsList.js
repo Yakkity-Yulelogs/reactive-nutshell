@@ -6,7 +6,7 @@
 import React, { Component } from 'react'
 import EventsCard from './EventsCard'
 import EventApiManager from './EventsApiManager'
-import { convertDateTimeFromISO } from "../../modules/DateTime"
+import {isCurrentEvent} from './EventsHelpers'
 import './Events.css'
 
 // WILL NEED TO CHANGE THIS ONCE LOGIN IS FUNCTIONING
@@ -17,24 +17,30 @@ class EventsList extends Component {
         events: []
     }
 
-    // returns boolean of whether event takes place before today or not before today
-    isCurrentEvent = (eventObject) => {
-        const now = new Date()
-        const nowDay = (now.getDay()) + 1
-        const nowYear = now.getFullYear()
-        const nowMonth = (now.getMonth()) + 1
-
-        const eventFullDate = convertDateTimeFromISO(eventObject.eventDate)
-        const eventToday = (eventFullDate.getDay()) + 2
-        const eventMonth = (eventFullDate.getMonth()) + 1
-        const eventYear = eventFullDate.getFullYear()
-
-        if (eventYear >= nowYear && eventMonth >= nowMonth && eventToday >= nowDay) {
-            return true
-        } else {
-            return false
-        }
+    // deletes one event
+    deleteEvent = id => {
+        EventApiManager.deleteEvent(id)
+        .then(() => {
+            this.getEventsUpdateState()
+        })
     }
+
+    getEventsUpdateState = () => {
+        EventApiManager.getAllFriends(loggedInUser)
+            .then(friendsList => {
+                return this.createStringOfFriends(friendsList)
+            })
+            .then(friendString => {
+                EventApiManager.getUserAndFriendEventsSorted(loggedInUser, friendString)
+                    .then(eventsList => {
+                        this.setState({
+                            events: this.putOwnFirstEventFirst(eventsList)
+                        })
+                    })
+            }
+            )
+    }
+
 
     // returns new array where loggedInUser's first event is always the first event
     putOwnFirstEventFirst = (eventsArray) => {
@@ -44,7 +50,7 @@ class EventsList extends Component {
 
         // we only want to update finalArray if the event takes place today or later.
         for (const evt of oldArray) {
-            if (this.isCurrentEvent(evt)) {
+            if (isCurrentEvent(evt)) {
 
                 if (!foundFirstEvent && evt.userId === loggedInUser) {
                     // add user's own first event as the first index position in finalArray
@@ -72,26 +78,16 @@ class EventsList extends Component {
 
 
     componentDidMount() {
-        EventApiManager.getAllFriends(loggedInUser)
-            .then(friendsList => {
-                return this.createStringOfFriends(friendsList)
-            })
-            .then(friendString => {
-                EventApiManager.getUserAndFriendEventsSorted(loggedInUser, friendString)
-                    .then(eventsList => {
-                        this.setState({
-                            events: this.putOwnFirstEventFirst(eventsList)
-                        })
-                    })
-            }
-            )
+        this.getEventsUpdateState()
     }
 
     render() {
         return (
             <React.Fragment>
+                <h1>Events</h1>
                 <div>
                     <button
+                        className="btn btn-primary"
                         type="button"
                         onClick={() => {this.props.history.push('/events/new')}}>
                         New Event
@@ -103,6 +99,7 @@ class EventsList extends Component {
                             key={event.id}
                             event={event}
                             loggedInUser={loggedInUser}
+                            deleteEvent={this.deleteEvent}
                         />)}
 
                 </div>
