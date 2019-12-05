@@ -4,7 +4,10 @@ import React, { Component } from "react"
 import ApiManager from "../../modules/ApiManager"
 import { createDateTimeToISO } from '../../modules/DateTime'
 
+//! Change this reference for local storage
 const loggedInUser = 1
+
+//Handles edit button on Article CArd
 
 class ArticleEditForm extends Component {
     //set the initial state
@@ -15,11 +18,15 @@ class ArticleEditForm extends Component {
         loadingStatus: true,
     };
 
+    //Handles changing state for text fields receiving input
+
     handleFieldChange = evt => {
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
+
+    //Creates object for edited article info to updated on databse
 
     updateExistingArticle = evt => {
         evt.preventDefault()
@@ -37,6 +44,8 @@ class ArticleEditForm extends Component {
             .then(() => this.props.history.push("/"))
     }
 
+    //Populates DOM with article to be edited
+
     componentDidMount() {
         ApiManager.get("articles", this.props.match.params.articleId)
             .then(article => {
@@ -52,7 +61,7 @@ class ArticleEditForm extends Component {
     render() {
         return (
             <>
-                <form>
+                <form className="card-body">
                     <fieldset>
                         <div className="formgrid">
                             <input
@@ -63,7 +72,7 @@ class ArticleEditForm extends Component {
                                 id="articleTitle"
                                 value={this.state.articleTitle}
                             />
-                            <label htmlFor="animalName">Article Title</label>
+                            <label htmlFor="animalName">Title</label>
                             <input
                                 type="text"
                                 required
@@ -88,7 +97,12 @@ class ArticleEditForm extends Component {
                                 type="button" disabled={this.state.loadingStatus}
                                 onClick={this.updateExistingArticle}
                                 className="btn btn-primary"
-                            >Submit</button>
+                            >Save Edit</button>
+                            <button 
+                            type="button" 
+                            className="btn btn-danger" 
+                            onClick={() => this.props.history.push("/")}
+                            >Cancel</button>
                         </div>
                     </fieldset>
                 </form>
