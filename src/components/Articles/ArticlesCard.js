@@ -5,7 +5,10 @@ import { convertDateTimeFromISO } from '../../modules/DateTime'
 
 class ArticleCard extends Component {
 
+    //Renders article card with title, user name who submitted, synopsis, link, and edit and delete button for logged in user cards
+
     render() {
+
 
         return (
             <div className={`card ${this.props.article.userId !== this.props.loggedInUser ? "friend-article" : null}`}>

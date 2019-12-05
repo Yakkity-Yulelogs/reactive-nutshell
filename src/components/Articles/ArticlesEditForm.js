@@ -4,7 +4,10 @@ import React, { Component } from "react"
 import ApiManager from "../../modules/ApiManager"
 import { createDateTimeToISO } from '../../modules/DateTime'
 
+//! Change this reference for local storage
 const loggedInUser = 1
+
+//Handles edit button on Article CArd
 
 class ArticleEditForm extends Component {
     //set the initial state
@@ -15,11 +18,15 @@ class ArticleEditForm extends Component {
         loadingStatus: true,
     };
 
+    //Handles changing state for text fields receiving input
+
     handleFieldChange = evt => {
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
+
+    //Creates object for edited article info to updated on databse
 
     updateExistingArticle = evt => {
         evt.preventDefault()
@@ -36,6 +43,8 @@ class ArticleEditForm extends Component {
         ApiManager.update("articles", editedArticle)
             .then(() => this.props.history.push("/"))
     }
+
+    //Populates DOM with article to be edited
 
     componentDidMount() {
         ApiManager.get("articles", this.props.match.params.articleId)
