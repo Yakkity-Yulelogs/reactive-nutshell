@@ -8,8 +8,12 @@ export class TasksCard extends Component {
     return (
       <div className="card">
           <div className="card-content">
-            <h2 className="card-task">{this.props.task.task}</h2>
-            <p>Due on: {convertDateTimeFromISO(this.props.task.expectedCompletionDate).toDateString()}</p>
+              {this.props.task.isComplete
+              ? <> <h2 style={{textDecorationLine: 'line-through'}} className="card-task">{this.props.task.task}</h2>
+              <p style={{textDecorationLine: 'line-through'}}>Due on: {convertDateTimeFromISO(this.props.task.expectedCompletionDate).toDateString()}</p> </>
+              :<> <h2 className="card-task">{this.props.task.task}</h2><p>Due on: {convertDateTimeFromISO(this.props.task.expectedCompletionDate).toDateString()}</p></>
+              }
+            
            
             <div>
             <input type="checkbox" checked={this.props.task.isComplete} onChange={()=> // handle checkbox
