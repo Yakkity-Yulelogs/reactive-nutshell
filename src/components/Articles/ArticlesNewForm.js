@@ -50,7 +50,7 @@ class ArticlesNewForm extends Component {
     render() {
         return (
             <>
-                <form>
+                <form className="card-body"> 
                     <fieldset>
                         <div className="formgrid">
                             <input type="text"

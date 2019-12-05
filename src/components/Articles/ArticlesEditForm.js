@@ -61,7 +61,7 @@ class ArticleEditForm extends Component {
     render() {
         return (
             <>
-                <form>
+                <form className="card-body">
                     <fieldset>
                         <div className="formgrid">
                             <input
