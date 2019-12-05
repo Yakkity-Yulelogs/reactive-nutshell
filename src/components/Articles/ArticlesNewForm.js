@@ -8,7 +8,7 @@ import { createDateTimeToISO } from '../../modules/DateTime'
 
 
 //! Change this reference for local storage
-const loggedInUser = 1
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 
 
 class ArticlesNewForm extends Component {
@@ -36,7 +36,7 @@ class ArticlesNewForm extends Component {
         } else {
             this.setState({ loadingStatus: true })
             const article = {
-                userId: loggedInUser,
+                userId: loggedInUserId(),
                 title: this.state.articleTitle,
                 synopsis: this.state.synopsis,
                 url: this.state.url,

@@ -5,7 +5,8 @@ import "./Nutshell.css";
 
 class Nutshell extends Component {
   state = {
-    user: false
+    user: false,
+    userId: '',
   }
 
   //check for logged in user in local storage
@@ -19,14 +20,17 @@ class Nutshell extends Component {
       JSON.stringify(authObj)
     )
     this.setState({
-      user: this.isAuthenticated()
+      user: this.isAuthenticated(),
+      userId: authObj.id,
     })
   }
 
   //handle logout functionality
   clearUser = () => {
-    localStorage.remove("credentials")
+    localStorage.removeItem("credentials")
+    localStorage.removeItem("userId")
     this.setState({ user: this.isAuthenticated() })
+    // this.props.history.push("/login")
   }
 
   //check for logged in user on rerender

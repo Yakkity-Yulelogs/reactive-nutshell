@@ -9,8 +9,7 @@ import EventApiManager from './EventsApiManager'
 import {isCurrentEvent} from './EventsHelpers'
 import './Events.css'
 
-// WILL NEED TO CHANGE THIS ONCE LOGIN IS FUNCTIONING
-const loggedInUser = 1
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 
 class EventsList extends Component {
     state = {
@@ -26,12 +25,12 @@ class EventsList extends Component {
     }
 
     getEventsUpdateState = () => {
-        EventApiManager.getAllFriends(loggedInUser)
+        EventApiManager.getAllFriends(loggedInUserId())
             .then(friendsList => {
                 return this.createStringOfFriends(friendsList)
             })
             .then(friendString => {
-                EventApiManager.getUserAndFriendEventsSorted(loggedInUser, friendString)
+                EventApiManager.getUserAndFriendEventsSorted(loggedInUserId(), friendString)
                     .then(eventsList => {
                         this.setState({
                             events: this.putOwnFirstEventFirst(eventsList)
@@ -52,7 +51,7 @@ class EventsList extends Component {
         for (const evt of oldArray) {
             if (isCurrentEvent(evt)) {
 
-                if (!foundFirstEvent && evt.userId === loggedInUser) {
+                if (!foundFirstEvent && evt.userId === loggedInUserId()) {
                     // add user's own first event as the first index position in finalArray
                     finalArray.unshift(evt)
                     foundFirstEvent = true
@@ -100,7 +99,7 @@ class EventsList extends Component {
                         <EventsCard
                             key={event.id}
                             event={event}
-                            loggedInUser={loggedInUser}
+                            loggedInUser={loggedInUserId()}
                             deleteEvent={this.deleteEvent}
                             {...this.props}
                         />)}

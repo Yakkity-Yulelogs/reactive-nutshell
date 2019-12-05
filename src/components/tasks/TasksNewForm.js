@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ApiManager from '../../modules/ApiManager.js'
 
-const loggedInUser = 1 // REPLACE WITH LOCALSTORAGE
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 
 
 export class TasksNewForm extends Component {
@@ -33,7 +33,7 @@ constructNewTask = evt => {
       this.setState({ loadingStatus: true });
       const task = {
           task: this.state.task,
-          userId: loggedInUser,
+          userId: loggedInUserId(),
           expectedCompletionDate: this.state.expectedCompletionDate,
           isComplete: false
 

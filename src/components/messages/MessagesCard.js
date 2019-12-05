@@ -9,14 +9,14 @@ import ApiFriends from '../friends/ApiFriends'
 
 const { followNewFriend } = ApiFriends
 //TODO: replace with localStorage authentication later
-const loggedInUser = 1
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 
 export class MessagesCard extends Component {
     handleClick = e => {
         const userName = e.target.innerText
         if (window.confirm(`Add ${userName} to your Friends list?`)){
             const connection = {
-                loggedInUser: loggedInUser,
+                loggedInUser: loggedInUserId(),
                 userId: Number(e.target.name)
             };
             followNewFriend(connection).then(() => this.props.history.push('/friends'));
@@ -29,7 +29,7 @@ export class MessagesCard extends Component {
 
         // setup unique message styling for current user
         let messageClasses = "otherUser"
-        if (loggedInUser === userId){
+        if (loggedInUserId() === userId){
             messageClasses = "currentUser"
         }
         const displayDateTime = convertDateTimeFromISO(timestamp).toLocaleString()

@@ -9,7 +9,7 @@ import "./Articles.css"
 
 
 //! Change this reference for local storage
-const loggedInUser = 1
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 
 //Handles landing page for articles
 
@@ -34,12 +34,12 @@ class ArticlesList extends Component {
 
     componentDidMount() {
 
-        ArticlesApiManager.getAllFriends(loggedInUser)
+        ArticlesApiManager.getAllFriends(loggedInUserId())
             .then(friendsList => {
                 return this.createStringOfFriends(friendsList)
             })
             .then(friendString => {
-                ArticlesApiManager.getUserAndFriendsArticlesSorted(loggedInUser, friendString)
+                ArticlesApiManager.getUserAndFriendsArticlesSorted(loggedInUserId(), friendString)
                     .then(articlesList => {
                         this.setState({
                             articles: articlesList
@@ -52,12 +52,12 @@ class ArticlesList extends Component {
 
     deleteArticle = id => {
         ApiManager.delete("articles", id)
-            .then(ArticlesApiManager.getAllFriends(loggedInUser)
+            .then(ArticlesApiManager.getAllFriends(loggedInUserId())
                 .then(friendsList => {
                     return this.createStringOfFriends(friendsList)
                 })
                 .then(friendString => {
-                    ArticlesApiManager.getUserAndFriendsArticlesSorted(loggedInUser, friendString)
+                    ArticlesApiManager.getUserAndFriendsArticlesSorted(loggedInUserId(), friendString)
                         .then(articlesList => {
                             this.setState({
                                 articles: articlesList
@@ -84,7 +84,7 @@ class ArticlesList extends Component {
                         <ArticlesCard
                             key={article.id}
                             userName={article.user.fullName}
-                            loggedInUser={loggedInUser}
+                            loggedInUser={loggedInUserId()}
                             article={article}
                             deleteArticle={this.deleteArticle}
                             {...this.props}

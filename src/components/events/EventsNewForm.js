@@ -8,7 +8,7 @@ import { isCurrentEvent } from './EventsHelpers'
 
 
 // CHANGE THIS AFTER LOGIN
-const loggedInUser = 1
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 
 class EventsNewForm extends Component {
     state = {
@@ -33,7 +33,7 @@ class EventsNewForm extends Component {
         } else {
             this.setState({loadingStatus: true})
             const newEvent = {
-                userId: loggedInUser,
+                userId: loggedInUserId(),
                 eventName: this.state.eventName,
                 eventDate: this.state.eventDate,
                 location: this.state.location

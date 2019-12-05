@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ApiManager from '../modules/ApiManager'
 
-const loggedInUser = 1 // REPLACE WITH LOCALSTORAGE
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 
 export class TasksEditForm extends Component {
 //******************************************************************************
@@ -29,7 +29,7 @@ updateExistingTask = evt => {
   this.setState({ loadingStatus: true });
   const editedTask = {
     id: this.props.match.params.taskId,
-    userId: loggedInUser,
+    userId: loggedInUserId(),
     task: this.state.task,
     expectedCompletionDate: this.state.expectedCompletionDate,
     isComplete: this.state.isComplete

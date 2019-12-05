@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ApiManager from '../../modules/ApiManager.js'
 import TasksCard from './TasksCard'
 
-const loggedInUser = 1 // REPLACE WITH LOCALSTORAGE
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 
 class TaskList extends Component {
   state = {
@@ -13,7 +13,7 @@ class TaskList extends Component {
   //Re-renderer
   //******************************************************************************
   tasksRerenderer = () => {
-    ApiManager.getAll("tasks", `_sort=expectedCompletionDate&_order=asc&userId=${loggedInUser}`)
+    ApiManager.getAll("tasks", `_sort=expectedCompletionDate&_order=asc&userId=${loggedInUserId()}`)
       .then((tasksArr) => {
         this.setState(
           {
@@ -68,7 +68,7 @@ class TaskList extends Component {
   //******************************************************************************
   // Fetching the data from the Json file and setting it as state
   componentDidMount() {
-    ApiManager.getAll("tasks", `_sort=expectedCompletionDate&_order=asc&userId=${loggedInUser}`)
+    ApiManager.getAll("tasks", `_sort=expectedCompletionDate&_order=asc&userId=${loggedInUserId()}`)
       .then((tasksArr) => {
         this.setState(
           {

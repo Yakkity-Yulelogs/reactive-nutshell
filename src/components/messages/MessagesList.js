@@ -11,7 +11,7 @@ import ApiFriends from '../friends/ApiFriends'
 const { getAllMessages, deleteUserMessage } = ApiMessages
 const { getAllFriendsWithNames } = ApiFriends
 //TODO: replace with localStorage authentication
-const loggedInUserId = 1
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 export class MessagesList extends Component {
 	state = {
 		messages: [],
@@ -92,7 +92,7 @@ export class MessagesList extends Component {
     					{messages.map((message) => {
 							// check for friendStatus to display button logic to add new friends
 							const isFriendOrSelf = this.state.friendIds.includes(message.userId) ||
-													message.userId === loggedInUserId
+													message.userId === loggedInUserId()
 							return <MessagesCard
 										key={message.id} 
 										message={message}

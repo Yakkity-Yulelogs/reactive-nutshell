@@ -1,11 +1,11 @@
 import ApiManager from '../../modules/ApiManager'
 
 // TODO: replace variable below with localStorage once registration/login implemented
-const loggedInUser = 1
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 
 const ApiFriends = {
     getAllFriendsWithNames() {
-        return ApiManager.getAll("friends", `loggedInUser=${loggedInUser}&_expand=user`)
+        return ApiManager.getAll("friends", `loggedInUser=${loggedInUserId()}&_expand=user`)
     },
     removeFriend(id) {
         return ApiManager.delete("friends", id)
