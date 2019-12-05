@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import RegisterForm from "./RegisterForm"
-import RegisterLoginForm from "./RegisterLoginForm"
+// import RegisterLoginForm from "./RegisterLoginForm"
 
 
 
