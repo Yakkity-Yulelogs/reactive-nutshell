@@ -55,6 +55,7 @@ class ArticlesNewForm extends Component {
                         <div className="formgrid">
                             <input type="text"
                                 required
+                                className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="articleTitle"
                                 placeholder="Title Here"
@@ -62,6 +63,7 @@ class ArticlesNewForm extends Component {
                             <label htmlFor="articleTitle">Title</label>
                             <input type="text"
                                 required
+                                className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="synopsis"
                                 placeholder="Synopsis Here"
@@ -69,6 +71,7 @@ class ArticlesNewForm extends Component {
                             <label htmlFor="breed">Synopsis</label>
                             <input type="text"
                                 required
+                                className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="url"
                                 placeholder="Link Here"
