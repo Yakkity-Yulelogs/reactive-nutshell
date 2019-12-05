@@ -4,7 +4,7 @@ import ApiMessages from './ApiMessages'
 
 const { postNewMessage } = ApiMessages
 
-const loggedInUserId = parseInt(localStorage.getItem("userId"))
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 export class MessagesNewForm extends Component {
     state = {
         messageText: '',
@@ -20,7 +20,7 @@ export class MessagesNewForm extends Component {
     handleSubmit = e => {
         e.preventDefault()
         const messageContent = {
-            userId: loggedInUserId,
+            userId: loggedInUserId(),
             message: this.state.messageText,
             timestamp: createDateTimeToISO()
         }

@@ -4,7 +4,7 @@ import ApiFriends from './ApiFriends';
 
 const { followNewFriend, getAllFriendsWithNames, searchUsersByKeyWord } = ApiFriends;
 // TODO: change to localStorage when implemented
-const loggedInUserId = parseInt(localStorage.getItem("userId"))
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 export class FriendsNewForm extends Component {
 	state = {
 		// friends: [],
@@ -41,7 +41,7 @@ export class FriendsNewForm extends Component {
 			searchUsersByKeyWord(searchTerm).then((results) => {
 				// only return non-friend userIds that also aren't current user
 				const nonFriends = results.filter((result) => {
-					return result.id !== loggedInUserId && !friendIds.includes(result.id);
+					return result.id !== loggedInUserId() && !friendIds.includes(result.id);
 				});
 				this.setState({
 					nonFriends: nonFriends
@@ -52,7 +52,7 @@ export class FriendsNewForm extends Component {
 
 	addFriend = (id) => {
 		const connection = {
-			loggedInUser: loggedInUserId,
+			loggedInUser: loggedInUserId(),
 			userId: id
 		};
 		followNewFriend(connection).then(() => this.props.history.push('/friends'));

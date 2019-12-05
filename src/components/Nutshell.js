@@ -5,7 +5,8 @@ import "./Nutshell.css";
 
 class Nutshell extends Component {
   state = {
-    user: false
+    user: false,
+    userId: '',
   }
 
   //check for logged in user in local storage
@@ -19,7 +20,8 @@ class Nutshell extends Component {
       JSON.stringify(authObj)
     )
     this.setState({
-      user: this.isAuthenticated()
+      user: this.isAuthenticated(),
+      userId: authObj.id,
     })
   }
 

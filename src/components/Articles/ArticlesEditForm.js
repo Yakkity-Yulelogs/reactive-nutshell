@@ -4,7 +4,7 @@ import React, { Component } from "react"
 import ApiManager from "../../modules/ApiManager"
 import { createDateTimeToISO } from '../../modules/DateTime'
 
-const loggedInUser = parseInt(localStorage.getItem("userId"))
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 
 //Handles edit button on Article CArd
 
@@ -32,7 +32,7 @@ class ArticleEditForm extends Component {
         this.setState({ loadingStatus: true });
         const editedArticle = {
             id: this.props.match.params.articleId,
-            userId: loggedInUser,
+            userId: loggedInUserId(),
             title: this.state.articleTitle,
             synopsis: this.state.synopsis,
             url: this.state.url,

@@ -18,11 +18,12 @@ export class RegisterLoginForm extends Component {
 		const { email, password } = this.state
 		ApiManager.getAll("users", `email=${email}&password=${password}`)
 		.then((user) => {
-			console.log('user login test', user)
+			// console.log('user login test', user)
 			if (user.length > 0){
 				this.props.setUser({
 					email: email,
-					password: password
+					password: password,
+					userId: user[0].id
 				});
 				const userId = user[0].id
 				localStorage.setItem("userId", parseInt(userId))

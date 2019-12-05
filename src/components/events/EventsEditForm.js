@@ -7,7 +7,7 @@ import EventsApiManager from './EventsApiManager'
 import { isCurrentEvent } from './EventsHelpers'
 
 // CHANGE THIS AFTER LOGIN
-const loggedInUser = parseInt(localStorage.getItem("userId"))
+function loggedInUserId() {return parseInt(localStorage.getItem("userId"))}
 
 class EventsEditForm extends Component {
     state = {
@@ -31,7 +31,7 @@ class EventsEditForm extends Component {
             this.setState({ loadingStatus: true })
             const updatedEvent = {
                 id: this.props.match.params.eventId,
-                userId: loggedInUser,
+                userId: loggedInUserId(),
                 eventName: this.state.eventName,
                 eventDate: this.state.eventDate,
                 location: this.state.location
