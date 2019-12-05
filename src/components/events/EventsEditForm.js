@@ -38,7 +38,7 @@ class EventsEditForm extends Component {
             }
             if (isCurrentEvent(updatedEvent)) {
                 // Put event to database and redirect user to Events List
-                EventsApiManager.updateExistingEvent(updatedEvent)
+                EventsApiManager.editEvent(updatedEvent)
                     .then(() => this.props.history.push("/events"))
             } else {
                 this.setState({ loadingStatus: false })
@@ -48,7 +48,7 @@ class EventsEditForm extends Component {
     }
 
     componentDidMount() {
-        EventsApiManager.getSingleEvent(this.props.params.eventId)
+        EventsApiManager.getSingleEvent(this.props.eventId)
             .then(event => {
                 this.setState({
                     eventName: event.eventName,
@@ -57,6 +57,62 @@ class EventsEditForm extends Component {
                     loadingStatus: false
                 })
             })
+    }
+
+    render() {
+        return(
+            <React.Fragment>
+                <form>
+                    <fieldset>
+                        <h1>Edit Event</h1>
+                        <div>
+                            <label htmlFor="eventName">Event</label>
+                            <br />
+                            <input 
+                                type="text"
+                                required
+                                onChange={this.handleFieldChange}
+                                value={this.state.eventName}
+                                id="eventName"
+                                placeholder="event"
+                            />
+                            <br />
+                            <label htmlFor="location">Where?</label>
+                            <br />
+                            <input 
+                                type="text"
+                                required
+                                onChange={this.handleFieldChange}
+                                value={this.state.location}
+                                id="location"
+                                placeholder="Location"
+                            />
+                            <br />
+                            <label htmlFor="eventDate">When?</label>
+                            <br />
+                            <input 
+                            // type="date" is causing a depreciation error
+                                type="date"
+                                required
+                                onChange={this.handleFieldChange}
+                                value={this.state.eventDate}
+                                id="eventDate"
+                                placeholder="Event Date"
+                            />
+                        </div>
+                        <div>
+                            <button 
+                                type="button"
+                                className="btn btn-primary"
+                                // disabled= {this.state.loadingStatus}
+                                onClick={this.updateExistingEvent}
+                            >Update
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>
+            </React.Fragment>
+        )
     }
 
 }

@@ -100,6 +100,7 @@ class EventsList extends Component {
                             event={event}
                             loggedInUser={loggedInUser}
                             deleteEvent={this.deleteEvent}
+                            {...this.props}
                         />)}
 
                 </div>
