@@ -13,6 +13,7 @@ import MessagesList from "./messages/MessagesList";
 import MessagesEditForm from "./messages/MessagesEditForm";
 import TasksEditForm from "./TasksEditForm";
 import MessagesNewForm from "./messages/MessagesNewForm";
+import EventsEditForm from "./events/EventsEditForm"
 
 export default class ApplicationViews extends Component {
 
@@ -76,7 +77,7 @@ export default class ApplicationViews extends Component {
         <Route path="/tasks/new" render={(props) => {
           return <TasksNewForm {...props} />
         }} />
-          <Route
+        <Route
           exact path="/tasks/:taskId(\d+)/edit" render={props => {
             return <TasksEditForm {...props} />
           }}
@@ -88,8 +89,14 @@ export default class ApplicationViews extends Component {
             // Remove null and return the component which will show the user's events
           }}
         />
-        <Route path="/events/new" render ={(props) =>{
+        <Route path="/events/new" render={(props) => {
           return <EventsNewForm {...props} />
+        }}
+        />
+        <Route path="/events/:eventId(\d+)/edit" render={(props) => {
+          return <EventsEditForm
+            eventId={parseInt(props.match.params.eventId)}
+            {...props} />
         }}
         />
 
