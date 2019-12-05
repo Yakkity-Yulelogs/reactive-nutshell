@@ -84,13 +84,14 @@ class TaskList extends Component {
   render() {
     return (
       <>
+        <section className="section-content">
         <h1>Tasks</h1>
 
         <button type="button" className="btn btn-primary"
           onClick={() => {
             this.props.history.push("/tasks/new" // Add new task routing
             )
-          }}>Add New</button>
+          }}>Add New</button></section>
 
         {
           this.state.tasks.map(task =>
@@ -99,7 +100,7 @@ class TaskList extends Component {
               task={task}
               handleCheckbox={this.handleCheckbox}
               handleDelete={this.handleDelete}
-              handleEdit = {this.handleEdit}
+              handleEdit={this.handleEdit}
               {...this.props}
             />
           )

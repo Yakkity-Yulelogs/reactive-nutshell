@@ -5,8 +5,8 @@ export default function FriendsCard(props) {
 	const { removeFriend, addFriend } = props;
 
 	return (
-		<div className="card">
-			<div className="card-body">
+		<div className="card friend-card">
+			<div>
 				<h5 className="card-title">{user.fullName}</h5>
 				{isFriend ? (
 					<button className="btn btn-danger" onClick={() => removeFriend(user.deleteId)}>

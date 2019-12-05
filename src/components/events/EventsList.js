@@ -84,6 +84,7 @@ class EventsList extends Component {
     render() {
         return (
             <React.Fragment>
+                <section className="section-content">
                 <h1>Events</h1>
                 <div>
                     <button
@@ -93,6 +94,7 @@ class EventsList extends Component {
                         New Event
                     </button>
                 </div>
+                </section>
                 <div className="container-cards" id="events">
                     {this.state.events.map(event =>
                         <EventsCard
