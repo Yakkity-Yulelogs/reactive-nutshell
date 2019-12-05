@@ -4,8 +4,7 @@ import React, { Component } from "react"
 import ApiManager from "../../modules/ApiManager"
 import { createDateTimeToISO } from '../../modules/DateTime'
 
-//! Change this reference for local storage
-const loggedInUser = 1
+const loggedInUser = parseInt(localStorage.getItem("userId"))
 
 //Handles edit button on Article CArd
 

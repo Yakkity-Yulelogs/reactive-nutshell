@@ -4,7 +4,7 @@ import ApiFriends from './ApiFriends';
 
 const { followNewFriend, getAllFriendsWithNames, searchUsersByKeyWord } = ApiFriends;
 // TODO: change to localStorage when implemented
-const loggedInUserId = 1;
+const loggedInUserId = parseInt(localStorage.getItem("userId"))
 export class FriendsNewForm extends Component {
 	state = {
 		// friends: [],

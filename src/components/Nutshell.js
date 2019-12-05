@@ -25,8 +25,10 @@ class Nutshell extends Component {
 
   //handle logout functionality
   clearUser = () => {
-    localStorage.remove("credentials")
+    localStorage.removeItem("credentials")
+    localStorage.removeItem("userId")
     this.setState({ user: this.isAuthenticated() })
+    // this.props.history.push("/login")
   }
 
   //check for logged in user on rerender

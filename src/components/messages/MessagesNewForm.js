@@ -4,7 +4,7 @@ import ApiMessages from './ApiMessages'
 
 const { postNewMessage } = ApiMessages
 
-const loggedInUserId = 1
+const loggedInUserId = parseInt(localStorage.getItem("userId"))
 export class MessagesNewForm extends Component {
     state = {
         messageText: '',

@@ -1,7 +1,7 @@
 import ApiManager from '../../modules/ApiManager'
 
 // TODO: replace variable below with localStorage once registration/login implemented
-const loggedInUser = 1
+const loggedInUser = parseInt(localStorage.getItem("userId"))
 
 const ApiFriends = {
     getAllFriendsWithNames() {

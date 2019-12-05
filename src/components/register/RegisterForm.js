@@ -12,18 +12,10 @@ export class RegisterForm extends Component {
   };
 
   handleFieldChange = e => {
-    // this.validatePasswordMatch()
     const stateToChange = {}
     stateToChange[e.target.id] = e.target.value
     this.setState(stateToChange)
-    // this.validatePasswordMatch()
   };
-
-  // handleEmailChange = (evt) => this.setState({ email: evt.target.value });
-  // handlePasswordAChange = (evt) => this.setState({ passwordA: evt.target.value });
-  // handlePasswordBChange = (evt) => this.setState({ passwordB: evt.target.value });
-
-
 
   handleLogin = e => {
     e.preventDefault()
@@ -39,6 +31,14 @@ export class RegisterForm extends Component {
         password: this.state.passwordA,
       })
       ApiManager.post("users", newUser)
+      .then(() => {
+        ApiManager.getLoggedInuser(this.state.email)
+        .then((user) => {
+          // console.log('user registration', user)
+          const userId = user[0].id
+          localStorage.setItem("userId", parseInt(userId))
+        })
+      })
       .then(() => {
         this.props.history.push("/")
       })

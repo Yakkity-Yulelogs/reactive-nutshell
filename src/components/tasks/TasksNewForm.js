@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ApiManager from '../../modules/ApiManager.js'
 
-const loggedInUser = 1 // REPLACE WITH LOCALSTORAGE
+const loggedInUser = parseInt(localStorage.getItem("userId"))
 
 
 export class TasksNewForm extends Component {

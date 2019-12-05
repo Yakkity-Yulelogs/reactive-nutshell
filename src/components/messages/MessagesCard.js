@@ -9,7 +9,7 @@ import ApiFriends from '../friends/ApiFriends'
 
 const { followNewFriend } = ApiFriends
 //TODO: replace with localStorage authentication later
-const loggedInUser = 1
+const loggedInUser = parseInt(localStorage.getItem("userId"))
 
 export class MessagesCard extends Component {
     handleClick = e => {

@@ -8,7 +8,7 @@ import { isCurrentEvent } from './EventsHelpers'
 
 
 // CHANGE THIS AFTER LOGIN
-const loggedInUser = 1
+const loggedInUser = parseInt(localStorage.getItem("userId"))
 
 class EventsNewForm extends Component {
     state = {

@@ -4,7 +4,7 @@ import RegisterLoginForm from "./RegisterLoginForm"
 
 
 
-const loggedInUser =  null// REPLACE WITH LOCALSTORAGE
+// const loggedInUser =  localStorage.getItem("credentials")
 
 export class RegisterMain extends Component {
   render() {
@@ -18,10 +18,7 @@ export class RegisterMain extends Component {
             </div>
           </div>
         </div>
-
-
-{      loggedInUser == null ? <RegisterForm {...this.props}/> : <RegisterLoginForm {...this.props} /> // lets check for user existence
-}
+        <RegisterForm {...this.props}/>
       </div>
 
 

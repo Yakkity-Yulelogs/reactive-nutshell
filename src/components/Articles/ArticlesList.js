@@ -9,7 +9,7 @@ import "./Articles.css"
 
 
 //! Change this reference for local storage
-const loggedInUser = 1
+const loggedInUser = parseInt(localStorage.getItem("userId"))
 
 //Handles landing page for articles
 

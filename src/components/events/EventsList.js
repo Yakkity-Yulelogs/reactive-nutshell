@@ -9,8 +9,7 @@ import EventApiManager from './EventsApiManager'
 import {isCurrentEvent} from './EventsHelpers'
 import './Events.css'
 
-// WILL NEED TO CHANGE THIS ONCE LOGIN IS FUNCTIONING
-const loggedInUser = 1
+const loggedInUser = parseInt(localStorage.getItem("userId"))
 
 class EventsList extends Component {
     state = {

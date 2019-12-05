@@ -9,6 +9,9 @@ export default {
   getAll(endpoint, params = "") {
     return fetch(`${baseUrl}/${endpoint}?${params}`).then((result) => result.json());
   },
+  getLoggedInuser(params = "") {
+    return fetch(`${baseUrl}/users?email=${params}`).then((result) => result.json());
+  },
   delete(endpoint, id) {
     return fetch(`${baseUrl}/${endpoint}/${id}`, {
       method: 'DELETE'

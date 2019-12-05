@@ -8,7 +8,7 @@ import { createDateTimeToISO } from '../../modules/DateTime'
 
 
 //! Change this reference for local storage
-const loggedInUser = 1
+const loggedInUser = parseInt(localStorage.getItem("userId"))
 
 
 class ArticlesNewForm extends Component {

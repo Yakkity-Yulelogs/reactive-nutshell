@@ -11,7 +11,7 @@ import ApiFriends from '../friends/ApiFriends'
 const { getAllMessages, deleteUserMessage } = ApiMessages
 const { getAllFriendsWithNames } = ApiFriends
 //TODO: replace with localStorage authentication
-const loggedInUserId = 1
+const loggedInUserId = parseInt(localStorage.getItem("userId"))
 export class MessagesList extends Component {
 	state = {
 		messages: [],
