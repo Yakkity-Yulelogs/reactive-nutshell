@@ -13,6 +13,7 @@ import MessagesList from "./messages/MessagesList";
 import MessagesEditForm from "./messages/MessagesEditForm";
 import TasksEditForm from "./TasksEditForm";
 import MessagesNewForm from "./messages/MessagesNewForm";
+import RegisterMain from "./register/RegisterMain"
 import EventsEditForm from "./events/EventsEditForm"
 
 export default class ApplicationViews extends Component {
@@ -20,6 +21,7 @@ export default class ApplicationViews extends Component {
   render() {
     return (
       <React.Fragment>
+
         <Route
           exact path="/" render={props => {
             return <ArticlesList {...props} />
@@ -37,8 +39,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/register" render={props => {
-            return null
-            // Remove null and return the component which will handle user registration
+            return <RegisterMain {...props} />
           }}
         />
 
