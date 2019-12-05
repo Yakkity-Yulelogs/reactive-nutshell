@@ -7,13 +7,19 @@ import ApiManager from '../../modules/ApiManager'
 import ArticlesApiManager from "../Articles/ArticlesApiManager"
 import "./Articles.css"
 
+
+//! Change this reference for local storage
 const loggedInUser = 1
+
+//Handles landing page for articles
 
 class ArticlesList extends Component {
 
     state = {
         articles: [],
     }
+
+    //Creates parameters to send to fetch call to get friends list
 
     createStringOfFriends(friendsArray) {
         let friendsParam = ""
@@ -23,6 +29,8 @@ class ArticlesList extends Component {
         }
         return friendsParam
     }
+
+    //Sets state with user and friends articles sorted by timestamp descending; includes nested full name of user
 
     componentDidMount() {
 
@@ -39,6 +47,8 @@ class ArticlesList extends Component {
                     })
             })
     }
+
+    //Deletes user submitted articles
 
     deleteArticle = id => {
         ApiManager.delete("articles", id)

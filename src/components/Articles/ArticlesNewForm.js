@@ -4,19 +4,30 @@ import React, { Component } from 'react'
 import ApiManager from '../../modules/ApiManager'
 import { createDateTimeToISO } from '../../modules/DateTime'
 
+//Handles form that populates when New Article button is pressed on main Articles page
+
+
+//! Change this reference for local storage
+const loggedInUser = 1
+
+
 class ArticlesNewForm extends Component {
+
     state = {
         articleTitle: "",
         synopsis: "",
         url: ""
     }
 
+    //Handles changing state for text fields receiving input
 
     handleFieldChange = evt => {
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
+
+    //Creates New Article Object to be posted to database (if fields are filled) then sends user to main Articles page
 
     constructNewArticle = evt => {
         evt.preventDefault()
@@ -25,8 +36,7 @@ class ArticlesNewForm extends Component {
         } else {
             this.setState({ loadingStatus: true })
             const article = {
-                //! change this to reference local storage
-                userId: 1,
+                userId: loggedInUser,
                 title: this.state.articleTitle,
                 synopsis: this.state.synopsis,
                 url: this.state.url,
@@ -40,18 +50,20 @@ class ArticlesNewForm extends Component {
     render() {
         return (
             <>
-                <form>
+                <form className="card-body"> 
                     <fieldset>
                         <div className="formgrid">
                             <input type="text"
                                 required
+                                className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="articleTitle"
                                 placeholder="Title Here"
                             />
-                            <label htmlFor="articleTitle">Article Title</label>
+                            <label htmlFor="articleTitle">Title</label>
                             <input type="text"
                                 required
+                                className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="synopsis"
                                 placeholder="Synopsis Here"
@@ -59,11 +71,12 @@ class ArticlesNewForm extends Component {
                             <label htmlFor="breed">Synopsis</label>
                             <input type="text"
                                 required
+                                className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="url"
                                 placeholder="Link Here"
                             />
-                            <label htmlFor="breed">Article Link</label>
+                            <label htmlFor="breed">Link</label>
                         </div>
                         <div className="alignRight">
                             <button
