@@ -35,7 +35,7 @@ export class MessagesCard extends Component {
         const displayDateTime = convertDateTimeFromISO(timestamp).toLocaleString()
 
         return (
-            <div className={`${messageClasses} card`}>
+            <div className={`${messageClasses} card`} style={{ margin: "10px auto", backgroundColor: "azure", width: "50%"}}>
                 <div className="card-body">
                     {this.props.isFriendOrSelf ?
                         <span><b>{fullName}</b></span> :
