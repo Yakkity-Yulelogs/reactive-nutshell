@@ -49,6 +49,7 @@ updateExistingTask = evt => {
         this.setState({
           task: task.task,
           expectedCompletionDate: task.expectedCompletionDate,
+          isComplete: task.isComplete,
           loadingStatus: false,
         })
       })}
@@ -72,8 +73,8 @@ updateExistingTask = evt => {
                 id="task"
                 value={this.state.task}
               /><br />
-              <label htmlFor="expectedCompletionDate">Due on</label>
 
+              <label htmlFor="expectedCompletionDate">Due on</label>
               <input
                 type="date"
                 required
@@ -82,17 +83,6 @@ updateExistingTask = evt => {
                 id="expectedCompletionDate"
                 value={this.state.expectedCompletionDate}
               /> <br/>
-
-<label htmlFor="isComplete">Is Completed</label>
-              <input 
-              type="checkbox"
-              required
-              className="form-control"
-              id="isComplete"
-              value={this.state.isComplete}
-              />
-              <br />
-           
 
             </div>
 
