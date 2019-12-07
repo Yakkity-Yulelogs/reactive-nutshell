@@ -10,6 +10,7 @@ export class TasksEditForm extends Component {
   state = {
     task: "",
     expectedCompletionDate: "",
+    isComplete: false,
     loadingStatus: true,
   };
 //******************************************************************************
@@ -80,8 +81,20 @@ updateExistingTask = evt => {
                 onChange={this.handleFieldChange}
                 id="expectedCompletionDate"
                 value={this.state.expectedCompletionDate}
+              /> <br/>
+
+<label htmlFor="isComplete">Is Completed</label>
+              <input 
+              type="checkbox"
+              required
+              className="form-control"
+              id="isComplete"
+              value={this.state.isComplete}
               />
-            </div><br />
+              <br />
+           
+
+            </div>
 
             <div className="alignRight">
               <button
