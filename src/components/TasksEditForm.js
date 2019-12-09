@@ -10,6 +10,7 @@ export class TasksEditForm extends Component {
   state = {
     task: "",
     expectedCompletionDate: "",
+    isComplete: false,
     loadingStatus: true,
   };
 //******************************************************************************
@@ -48,6 +49,7 @@ updateExistingTask = evt => {
         this.setState({
           task: task.task,
           expectedCompletionDate: task.expectedCompletionDate,
+          isComplete: task.isComplete,
           loadingStatus: false,
         })
       })}
@@ -71,8 +73,8 @@ updateExistingTask = evt => {
                 id="task"
                 value={this.state.task}
               /><br />
-              <label htmlFor="expectedCompletionDate">Due on</label>
 
+              <label htmlFor="expectedCompletionDate">Due on</label>
               <input
                 type="date"
                 required
@@ -80,8 +82,9 @@ updateExistingTask = evt => {
                 onChange={this.handleFieldChange}
                 id="expectedCompletionDate"
                 value={this.state.expectedCompletionDate}
-              />
-            </div><br />
+              /> <br/>
+
+            </div>
 
             <div className="alignRight">
               <button
